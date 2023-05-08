@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    boxSizing: 'border-box',
   },
   background: {
     flex: 1,
