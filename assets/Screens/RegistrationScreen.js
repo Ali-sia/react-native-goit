@@ -23,9 +23,7 @@ export default function Register() {
           </TouchableOpacity>
         </TouchableOpacity>
         {/* page title */}
-        <Text style={styles.title}>Реєстрація</Text>
-        {/* login input */}
-        <TextInput style={styles.inputStyles} placeholder="Логін"></TextInput>
+        <Text style={styles.title}>Увійти</Text>
         {/* email input */}
         <TextInput
           style={styles.inputStyles}
@@ -51,14 +49,14 @@ export default function Register() {
           style={styles.formButton}
           onPress={() => Alert.alert('you register')}
         >
-          <Text style={styles.btnText}>Зареєструватися</Text>
+          <Text style={styles.btnText}>Увійти</Text>
         </TouchableOpacity>
-        {/* link to login */}
+        {/* link to register */}
         <TouchableOpacity
           style={styles.formLink}
-          onPress={() => Alert.alert('goto login')}
+          onPress={() => Alert.alert('goto register')}
         >
-          <Text style={styles.linkText}>Вже маєте аккаунт? Увійти</Text>
+          <Text style={styles.linkText}>Немає аккаунту? Зареєструватися</Text>
         </TouchableOpacity>
       </View>
 
