@@ -1,7 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 
 import { useFonts } from 'expo-font';
+
+import Register from './assets/Screens/RegistrationScreen';
+import Login from './assets/Screens/LoginScreen';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -9,7 +12,6 @@ export default function App() {
     robotoMedium: require('./assets/fonts/Roboto-Medium.ttf'),
     robotoRegular: require('./assets/fonts/Roboto-Regular.ttf'),
   });
-
   if (!fontsLoaded) {
     return null;
   }
@@ -20,10 +22,8 @@ export default function App() {
         source={require('./assets/images/RegisterLoginBG.png')}
         style={styles.background}
       >
-        <Text style={styles.textStyle}>
-          Open up App.js to start working on your app!
-        </Text>
-        <Text style={styles.textStyle}>^-^</Text>
+        <Register />
+        {/* <Login /> */}
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
@@ -34,11 +34,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-  },
-  textStyle: {
-    fontSize: 30,
-    color: '#ffffff',
-    fontFamily: 'robotoBold',
   },
   background: {
     flex: 1,
