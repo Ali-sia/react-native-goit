@@ -12,6 +12,7 @@ export default function Register() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
+        {/* avatar input */}
         <TouchableOpacity style={styles.imageInput}>
           <TouchableOpacity
             style={styles.imageInputIcon}
@@ -21,20 +22,38 @@ export default function Register() {
             <Text style={styles.lineHorizontal}></Text>
           </TouchableOpacity>
         </TouchableOpacity>
+        {/* page title */}
         <Text style={styles.title}>Регістрація</Text>
+        {/* login input */}
         <TextInput style={styles.inputStyles} placeholder="Логін"></TextInput>
+        {/* email input */}
         <TextInput
           style={styles.inputStyles}
           placeholder="Електронна пошта"
         ></TextInput>
-        <TextInput style={styles.inputStyles} placeholder="Пароль"></TextInput>
+        {/* password */}
+        <View style={styles.passwordContainer}>
+          {/* password input */}
+          <TextInput
+            style={styles.inputStyles}
+            placeholder="Пароль"
+          ></TextInput>
+          {/* show password btn */}
+          <TouchableOpacity
+            style={styles.showPassword}
+            onPress={() => Alert.alert('your password')}
+          >
+            <Text style={styles.showPasswordText}>Показати</Text>
+          </TouchableOpacity>
+        </View>
+        {/* register btn */}
         <TouchableOpacity
           style={styles.formButton}
           onPress={() => Alert.alert('you register')}
         >
           <Text style={styles.btnText}>Зареєструватися</Text>
         </TouchableOpacity>
-
+        {/* link to login */}
         <TouchableOpacity
           style={styles.formLink}
           onPress={() => Alert.alert('goto login')}
@@ -93,6 +112,16 @@ const styles = StyleSheet.create({
 
     color: '#212121',
   },
+  passwordContainer: {
+    position: 'relative',
+    width: '100%',
+  },
+  showPassword: {
+    position: 'absolute',
+    right: 16,
+    top: 16,
+  },
+  showPasswordText: { fontSize: 16, lineHeight: 19, color: '#1B4371' },
   formButton: {
     height: 50,
     width: '100%',
