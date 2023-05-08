@@ -23,7 +23,7 @@ export default function Register() {
           </TouchableOpacity>
         </TouchableOpacity>
         {/* page title */}
-        <Text style={styles.title}>Регістрація</Text>
+        <Text style={styles.title}>Реєстрація</Text>
         {/* login input */}
         <TextInput style={styles.inputStyles} placeholder="Логін"></TextInput>
         {/* email input */}
