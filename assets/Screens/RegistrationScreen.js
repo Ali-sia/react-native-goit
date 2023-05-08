@@ -12,6 +12,15 @@ export default function Register() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
+        <TouchableOpacity style={styles.imageInput}>
+          <TouchableOpacity
+            style={styles.imageInputIcon}
+            onPress={() => Alert.alert('add photo')}
+          >
+            <Text style={styles.lineVertical}></Text>
+            <Text style={styles.lineHorizontal}></Text>
+          </TouchableOpacity>
+        </TouchableOpacity>
         <Text style={styles.title}>Регістрація</Text>
         <TextInput style={styles.inputStyles} placeholder="Логін"></TextInput>
         <TextInput
@@ -106,4 +115,32 @@ const styles = StyleSheet.create({
   },
   formLink: {},
   linkText: { fontSize: 16, lineHeight: 19, color: '#1B4371' },
+  imageInput: {
+    height: 120,
+    width: 120,
+    backgroundColor: '#F6F6F6',
+    borderRadius: 16,
+    position: 'absolute',
+    top: '-15%',
+  },
+  imageInputIcon: {
+    height: 25,
+    width: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderColor: '#FF6C00',
+    borderRadius: 50,
+    borderWidth: 1,
+    position: 'absolute',
+    bottom: '10%',
+    right: '-10%',
+  },
+  lineVertical: {
+    height: 1,
+    width: 13,
+    backgroundColor: '#FF6C00',
+    transform: [{ rotate: '90deg' }],
+  },
+  lineHorizontal: { height: 1, width: 13, backgroundColor: '#FF6C00' },
 });
