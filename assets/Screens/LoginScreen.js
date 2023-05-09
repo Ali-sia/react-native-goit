@@ -8,6 +8,14 @@ import {
   Alert,
 } from 'react-native';
 
+// const [isPressed, setIsPressed] = useState(false);
+// const handlePressIn = () => {
+//   setIsPressed(true);
+// };
+// const handlePressOut = () => {
+//   setIsPressed(false);
+// };
+// style={[styles.button, isPressed && styles.buttonPressed]}
 export default function Login() {
   return (
     <View style={styles.mainContainer}>
@@ -112,6 +120,7 @@ const styles = StyleSheet.create({
 
     color: '#212121',
   },
+  // inputStyles:onPressIn: {    borderColor: '#FF6C00',   backgroundColor: '#FFFFFF',},
   passwordContainer: {
     position: 'relative',
     width: '100%',

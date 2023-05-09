@@ -7,7 +7,14 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-
+// const [isPressed, setIsPressed] = useState(false);
+// const handlePressIn = () => {
+//   setIsPressed(true);
+// };
+// const handlePressOut = () => {
+//   setIsPressed(false);
+// };
+// style={[styles.button, isPressed && styles.buttonPressed]}
 export default function Register() {
   return (
     <View style={styles.mainContainer}>
