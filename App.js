@@ -4,7 +4,7 @@ import { StyleSheet, View, ImageBackground } from 'react-native';
 import { useFonts } from 'expo-font';
 
 import Register from './src/screens/RegistrationScreen';
-// import Login from './assets/Screens/LoginScreen';
+import Login from './src/screens/LoginScreen';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
