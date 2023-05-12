@@ -44,7 +44,7 @@ export default function Register() {
           </TouchableOpacity>
         </TouchableOpacity>
         {/* page title */}
-        <Text style={styles.title}>Регістрація</Text>
+        <Text style={styles.title}>Реєстрація</Text>
         {/* login input */}
         <CustomInput
           value={login}
