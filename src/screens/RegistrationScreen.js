@@ -12,18 +12,13 @@ import {
 
 import CustomInput from '../components/CustomInput';
 
-// const [isPressed, setIsPressed] = useState(false);
-// const handlePressIn = () => {
-//   setIsPressed(true);
-// };
-// const handlePressOut = () => {
-//   setIsPressed(false);
-// };
-// style={[styles.button, isPressed && styles.buttonPressed]}
+// const initialState = { login: '', email: '', password: '' };
 export default function Register() {
+  // const [state, setState] = useState(initialState);
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   function handleFormSubmit() {
     console.log({ login, email, password });
@@ -45,36 +40,34 @@ export default function Register() {
         {/* page title */}
         <Text style={styles.title}>Регістрація</Text>
         {/* login input */}
-        <CustomInput />
-        <TextInput
-          style={styles.inputStyles}
-          onChange={setLogin}
-          onSubmitEditing={handleFormSubmit}
+        <CustomInput
           value={login}
-          placeholder="Логін"
-        ></TextInput>
-        {/* email input */}
-        <TextInput
-          style={styles.inputStyles}
-          onChange={e => setEmail(e.target.value)}
+          setValue={setLogin}
+          placeholder={'Логін'}
           onSubmitEditing={handleFormSubmit}
+        />
+        {/* email input */}
+        <CustomInput
           value={email}
-          placeholder="Електронна пошта"
-        ></TextInput>
+          setValue={setEmail}
+          placeholder={'Електронна пошта'}
+          onSubmitEditing={handleFormSubmit}
+        />
+
         {/* password */}
         <View style={styles.passwordContainer}>
           {/* password input */}
-          <TextInput
-            style={styles.inputStyles}
-            onChange={e => setPassword(e.target.value)}
-            onSubmitEditing={handleFormSubmit}
+          <CustomInput
             value={password}
-            placeholder="Пароль"
-          ></TextInput>
+            setValue={setPassword}
+            placeholder={'Пароль'}
+            onSubmitEditing={handleFormSubmit}
+            secureTextEntry={isPasswordHidden}
+          />
           {/* show password btn */}
           <TouchableOpacity
             style={styles.showPassword}
-            onPress={() => Alert.alert('your password')}
+            onPress={() => setIsPasswordHidden(!isPasswordHidden)}
           >
             <Text style={styles.showPasswordText}>Показати</Text>
           </TouchableOpacity>

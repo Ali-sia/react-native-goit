@@ -9,17 +9,13 @@ export default function CustomInput({
   secureTextEntry = false,
 }) {
   const [onFocus, setOnFocus] = useState(false);
-  console.log('---> ~ onFocus:', onFocus);
-  //   useEffect(() => {
-  //     setOnFocus(false);
-  //   }, [onFocus]);
-  //   style={[styles.button, isPressed && styles.buttonPressed]}
 
   return (
     <TextInput
       style={[styles.inputStyles, onFocus && styles.inputStylesOnFocus]}
-      onChange={setValue}
+      //   onChangeText={ (text) => setValue((prev)=>{{(...prev), value: text}}) }
       onSubmitEditing={onSubmitEditing}
+      onChangeText={text => setValue(text)}
       value={value}
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
