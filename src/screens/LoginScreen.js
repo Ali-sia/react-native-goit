@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,7 +16,7 @@ import {
 //   setIsPressed(false);
 // };
 // style={[styles.button, isPressed && styles.buttonPressed]}
-export default function Register() {
+export default function Login() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
@@ -35,6 +36,7 @@ export default function Register() {
         <TextInput
           style={styles.inputStyles}
           placeholder="Електронна пошта"
+          // onChange={e => getFormFieldData(e)}
         ></TextInput>
         {/* password */}
         <View style={styles.passwordContainer}>

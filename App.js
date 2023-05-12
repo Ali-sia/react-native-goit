@@ -3,8 +3,8 @@ import { StyleSheet, View, ImageBackground } from 'react-native';
 
 import { useFonts } from 'expo-font';
 
-// import Register from './assets/Screens/RegistrationScreen';
-import Login from './assets/Screens/LoginScreen';
+import Register from './src/screens/RegistrationScreen';
+// import Login from './assets/Screens/LoginScreen';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,8 +22,8 @@ export default function App() {
         source={require('./assets/images/RegisterLoginBG.png')}
         style={styles.background}
       >
-        {/* <Register /> */}
-        <Login />
+        <Register />
+        {/* <Login /> */}
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
     boxSizing: 'border-box',
+    // paddingTop: Constants.statusBarHeight,
   },
   background: {
     flex: 1,

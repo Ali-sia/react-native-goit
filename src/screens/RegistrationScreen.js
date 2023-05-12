@@ -1,4 +1,6 @@
 // import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -8,6 +10,8 @@ import {
   Alert,
 } from 'react-native';
 
+import CustomInput from '../components/CustomInput';
+
 // const [isPressed, setIsPressed] = useState(false);
 // const handlePressIn = () => {
 //   setIsPressed(true);
@@ -16,7 +20,15 @@ import {
 //   setIsPressed(false);
 // };
 // style={[styles.button, isPressed && styles.buttonPressed]}
-export default function Login() {
+export default function Register() {
+  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleFormSubmit() {
+    console.log({ login, email, password });
+  }
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
@@ -33,10 +45,20 @@ export default function Login() {
         {/* page title */}
         <Text style={styles.title}>Регістрація</Text>
         {/* login input */}
-        <TextInput style={styles.inputStyles} placeholder="Логін"></TextInput>
+        <CustomInput />
+        <TextInput
+          style={styles.inputStyles}
+          onChange={setLogin}
+          onSubmitEditing={handleFormSubmit}
+          value={login}
+          placeholder="Логін"
+        ></TextInput>
         {/* email input */}
         <TextInput
           style={styles.inputStyles}
+          onChange={e => setEmail(e.target.value)}
+          onSubmitEditing={handleFormSubmit}
+          value={email}
           placeholder="Електронна пошта"
         ></TextInput>
         {/* password */}
@@ -44,6 +66,9 @@ export default function Login() {
           {/* password input */}
           <TextInput
             style={styles.inputStyles}
+            onChange={e => setPassword(e.target.value)}
+            onSubmitEditing={handleFormSubmit}
+            value={password}
             placeholder="Пароль"
           ></TextInput>
           {/* show password btn */}
@@ -55,10 +80,7 @@ export default function Login() {
           </TouchableOpacity>
         </View>
         {/* register btn */}
-        <TouchableOpacity
-          style={styles.formButton}
-          onPress={() => Alert.alert('you register')}
-        >
+        <TouchableOpacity style={styles.formButton} onPress={handleFormSubmit}>
           <Text style={styles.btnText}>Зареєструватися</Text>
         </TouchableOpacity>
         {/* link to login */}
