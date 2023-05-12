@@ -1,63 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
-// const [isPressed, setIsPressed] = useState(false);
-// const handlePressIn = () => {
-//   setIsPressed(true);
-// };
-// const handlePressOut = () => {
-//   setIsPressed(false);
-// };
-// style={[styles.button, isPressed && styles.buttonPressed]}
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+
+import CustomInput from '../components/CustomInput';
+
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+
+  function handleFormSubmit() {
+    console.log({ email, password });
+    setEmail('');
+    setPassword('');
+  }
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.container}>
-        {/* avatar input */}
-        <TouchableOpacity style={styles.imageInput}>
-          <TouchableOpacity
-            style={styles.imageInputIcon}
-            onPress={() => Alert.alert('add photo')}
-          >
-            <Text style={styles.lineVertical}></Text>
-            <Text style={styles.lineHorizontal}></Text>
-          </TouchableOpacity>
-        </TouchableOpacity>
         {/* page title */}
         <Text style={styles.title}>Увійти</Text>
         {/* email input */}
-        <TextInput
-          style={styles.inputStyles}
-          placeholder="Електронна пошта"
-          // onChange={e => getFormFieldData(e)}
-        ></TextInput>
+        <CustomInput
+          value={email}
+          setValue={setEmail}
+          placeholder={'Електронна пошта'}
+          onSubmitEditing={handleFormSubmit}
+        />
         {/* password */}
         <View style={styles.passwordContainer}>
           {/* password input */}
-          <TextInput
-            style={styles.inputStyles}
-            placeholder="Пароль"
-          ></TextInput>
+          <CustomInput
+            value={password}
+            setValue={setPassword}
+            placeholder={'Пароль'}
+            onSubmitEditing={handleFormSubmit}
+            secureTextEntry={isPasswordHidden}
+          />
           {/* show password btn */}
           <TouchableOpacity
             style={styles.showPassword}
-            onPress={() => Alert.alert('your password')}
+            onPress={() => setIsPasswordHidden(!isPasswordHidden)}
           >
             <Text style={styles.showPasswordText}>Показати</Text>
           </TouchableOpacity>
         </View>
-        {/* register btn */}
-        <TouchableOpacity
-          style={styles.formButton}
-          onPress={() => Alert.alert('you register')}
-        >
+
+        {/* login btn */}
+        <TouchableOpacity style={styles.formButton} onPress={handleFormSubmit}>
           <Text style={styles.btnText}>Увійти</Text>
         </TouchableOpacity>
         {/* link to register */}
@@ -82,8 +72,8 @@ const styles = StyleSheet.create({
     fontStyle: 'robotoRegular',
   },
   container: {
-    flex: 0.65,
-    paddingTop: 92,
+    flex: 0.55,
+    paddingTop: 32,
     paddingLeft: 16,
     paddingRight: 16,
     paddingBottom: 45,
@@ -101,23 +91,6 @@ const styles = StyleSheet.create({
     color: '#212121',
 
     marginBottom: 32,
-  },
-  inputStyles: {
-    backgroundColor: '#F6F6F6',
-    marginBottom: 16,
-    width: '100%',
-    height: 50,
-    borderColor: '#E8E8E8',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingTop: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingBottom: 15,
-    fontSize: 16,
-    lineHeight: 19,
-
-    color: '#212121',
   },
   passwordContainer: {
     position: 'relative',
