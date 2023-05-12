@@ -1,20 +1,11 @@
 // import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 
 import CustomInput from '../components/CustomInput';
 
-// const initialState = { login: '', email: '', password: '' };
 export default function Register() {
-  // const [state, setState] = useState(initialState);
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,6 +13,9 @@ export default function Register() {
 
   function handleFormSubmit() {
     console.log({ login, email, password });
+    setLogin('');
+    setEmail('');
+    setPassword('');
   }
 
   return (
@@ -53,7 +47,6 @@ export default function Register() {
           placeholder={'Електронна пошта'}
           onSubmitEditing={handleFormSubmit}
         />
-
         {/* password */}
         <View style={styles.passwordContainer}>
           {/* password input */}
@@ -72,6 +65,7 @@ export default function Register() {
             <Text style={styles.showPasswordText}>Показати</Text>
           </TouchableOpacity>
         </View>
+
         {/* register btn */}
         <TouchableOpacity style={styles.formButton} onPress={handleFormSubmit}>
           <Text style={styles.btnText}>Зареєструватися</Text>
@@ -118,24 +112,6 @@ const styles = StyleSheet.create({
 
     marginBottom: 32,
   },
-  inputStyles: {
-    backgroundColor: '#F6F6F6',
-    marginBottom: 16,
-    width: '100%',
-    height: 50,
-    borderColor: '#E8E8E8',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingTop: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingBottom: 15,
-    fontSize: 16,
-    lineHeight: 19,
-
-    color: '#212121',
-  },
-  // inputStyles:onPressIn: {    borderColor: '#FF6C00',   backgroundColor: '#FFFFFF',},
   passwordContainer: {
     position: 'relative',
     width: '100%',
