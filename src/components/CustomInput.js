@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 
 export default function CustomInput({
@@ -13,7 +13,6 @@ export default function CustomInput({
   return (
     <TextInput
       style={[styles.inputStyles, onFocus && styles.inputStylesOnFocus]}
-      //   onChangeText={ (text) => setValue((prev)=>{{(...prev), value: text}}) }
       onSubmitEditing={onSubmitEditing}
       onChangeText={text => setValue(text)}
       value={value}
