@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, Keyboard } from 'react-native';
 
 export default function CustomInput({
   value,
   setValue,
   placeholder,
-  onSubmitEditing,
+  // onSubmitEditing,
   secureTextEntry = false,
+  keyboardShow,
 }) {
-  const [onFocus, setOnFocus] = useState(false);
+  const [onFocusInput, setOnFocusInput] = useState(false);
 
   return (
     <TextInput
-      style={[styles.inputStyles, onFocus && styles.inputStylesOnFocus]}
-      onSubmitEditing={onSubmitEditing}
+      style={[styles.inputStyles, onFocusInput && styles.inputStylesOnFocus]}
       onChangeText={text => setValue(text)}
       value={value}
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
       onFocus={() => {
-        setOnFocus(true);
+        setOnFocusInput(true);
+        keyboardShow(true);
       }}
-      onBlur={() => setOnFocus(false)}
+      onBlur={() => setOnFocusInput(false)}
     ></TextInput>
   );
 }

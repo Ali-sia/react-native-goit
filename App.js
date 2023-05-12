@@ -1,5 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, ImageBackground } from 'react-native';
+// import { useState } from 'react';
+
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 
 import { useFonts } from 'expo-font';
 
@@ -16,17 +23,24 @@ export default function App() {
     return null;
   }
 
+  // const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  // function handleCloseKeyboard() {
+  //   setIsShowKeyboard(true);
+  //   Keyboard.dismiss();
+  // }
+
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require('./assets/images/RegisterLoginBG.png')}
-        style={styles.background}
-      >
-        <Register />
-        {/* <Login /> */}
-      </ImageBackground>
-      <StatusBar style="auto" />
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require('./assets/images/RegisterLoginBG.png')}
+          style={styles.background}
+        >
+          <Register />
+          {/* <Login /> */}
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 

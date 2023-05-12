@@ -1,7 +1,14 @@
 // import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  Keyboard,
+} from 'react-native';
 
 import CustomInput from '../components/CustomInput';
 
@@ -10,6 +17,11 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  function handleCloseKeyboard() {
+    setIsShowKeyboard(true);
+    Keyboard.dismiss();
+  }
 
   function handleFormSubmit() {
     console.log({ login, email, password });
@@ -39,6 +51,7 @@ export default function Register() {
           setValue={setLogin}
           placeholder={'Логін'}
           onSubmitEditing={handleFormSubmit}
+          keyboardShow={setIsShowKeyboard}
         />
         {/* email input */}
         <CustomInput
@@ -46,6 +59,7 @@ export default function Register() {
           setValue={setEmail}
           placeholder={'Електронна пошта'}
           onSubmitEditing={handleFormSubmit}
+          keyboardShow={setIsShowKeyboard}
         />
         {/* password */}
         <View style={styles.passwordContainer}>
@@ -56,6 +70,7 @@ export default function Register() {
             placeholder={'Пароль'}
             onSubmitEditing={handleFormSubmit}
             secureTextEntry={isPasswordHidden}
+            keyboardShow={setIsShowKeyboard}
           />
           {/* show password btn */}
           <TouchableOpacity
@@ -67,7 +82,13 @@ export default function Register() {
         </View>
 
         {/* register btn */}
-        <TouchableOpacity style={styles.formButton} onPress={handleFormSubmit}>
+        <TouchableOpacity
+          style={styles.formButton}
+          onPress={() => {
+            handleFormSubmit();
+            handleCloseKeyboard();
+          }}
+        >
           <Text style={styles.btnText}>Зареєструватися</Text>
         </TouchableOpacity>
         {/* link to login */}
