@@ -1,17 +1,26 @@
 // import { useState } from 'react';
+import 'react-native-gesture-handler';
 
 import {
   StyleSheet,
+  Text,
   View,
+  TouchableOpacity,
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from 'react-native';
 
 import { useFonts } from 'expo-font';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Register from './src/screens/RegistrationScreen';
 import Login from './src/screens/LoginScreen';
+import Home from './src/screens/HomeScreen';
+
+const MainStack = createStackNavigator(); // вказує на групу навігаторів
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,38 +32,59 @@ export default function App() {
     return null;
   }
 
-  // const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  // function handleCloseKeyboard() {
-  //   setIsShowKeyboard(true);
-  //   Keyboard.dismiss();
-  // }
-
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
-        <ImageBackground
-          source={require('./assets/images/RegisterLoginBG.png')}
-          style={styles.background}
-        >
-          <Register />
-          {/* <Login /> */}
-        </ImageBackground>
-      </View>
-    </TouchableWithoutFeedback>
+    <NavigationContainer>
+      <MainStack.Navigator initialRouteName="LoginScreen">
+        <MainStack.Screen
+          options={{ headerShown: false }}
+          name="LoginScreen"
+          component={Login}
+        />
+        <MainStack.Screen
+          options={{ headerShown: false }}
+          name="RegistrationScreen"
+          component={Register}
+        />
+        <MainStack.Screen
+          name="HomeScreen"
+          component={Home}
+          options={{
+            title: 'Публікації',
+            headerStyle: {
+              backgroundColor: '#ffffff',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 0.5 },
+              shadowOpacity: 0.3,
+              shadowRadius: 0,
+              elevation: 1,
+            },
+            headerTintColor: '#212121',
+            headerTitleStyle: {
+              fontFamily: 'robotoMedium',
+              fontSize: 17,
+              lineHeight: 22,
+            },
+            headerTitleAlign: 'center',
+            headerLeft: () => <View style={{ width: 0 }}></View>,
+            headerRight: () => (
+              <TouchableOpacity
+                style={styles.logoutIcon}
+                onPress={() => alert('logout function')}
+              >
+                <Image
+                  source={require('./assets/images/icons/logout.png')}
+                ></Image>
+              </TouchableOpacity>
+            ),
+          }}
+        />
+      </MainStack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-    boxSizing: 'border-box',
-    // paddingTop: Constants.statusBarHeight,
-  },
-  background: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-    alignItems: 'center',
+  logoutIcon: {
+    marginRight: 16,
   },
 });
