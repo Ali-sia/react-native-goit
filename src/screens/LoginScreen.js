@@ -72,13 +72,17 @@ export default function Login() {
               {/* login btn */}
               <TouchableOpacity
                 style={styles.formButton}
-                onPress={handleFormSubmit}
+                onPress={() => {
+                  handleFormSubmit();
+                  navigation.navigate('HomeScreen');
+                }}
               >
                 <Text style={styles.btnText}>Увійти</Text>
               </TouchableOpacity>
               {/* link to register */}
               <TouchableOpacity
                 style={styles.formLink}
+                activeOpacity={0.8}
                 onPress={() => navigation.navigate('RegistrationScreen')}
               >
                 <Text style={styles.linkText}>
@@ -115,10 +119,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.55,
     paddingTop: 32,
-    paddingLeft: 16,
-    paddingRight: 16,
     paddingBottom: 45,
-
+    paddingHorizontal: 16,
     alignItems: 'center',
     backgroundColor: '#ffffff',
     borderTopRightRadius: 25,
@@ -142,18 +144,20 @@ const styles = StyleSheet.create({
     right: 16,
     top: 16,
   },
-  showPasswordText: { fontSize: 16, lineHeight: 19, color: '#1B4371' },
+  showPasswordText: {
+    fontSize: 16,
+    lineHeight: 19,
+    color: '#1B4371',
+  },
   formButton: {
     height: 50,
     width: '100%',
     alignItems: 'center',
     paddingTop: 16,
-    paddingLeft: 32,
-    paddingRight: 32,
     paddingBottom: 16,
+    paddingHorizontal: 32,
     marginTop: 27,
     marginBottom: 16,
-
     backgroundColor: '#FF6C00',
     borderRadius: 100,
   },
@@ -164,7 +168,11 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   formLink: {},
-  linkText: { fontSize: 16, lineHeight: 19, color: '#1B4371' },
+  linkText: {
+    fontSize: 16,
+    lineHeight: 19,
+    color: '#1B4371',
+  },
   imageInput: {
     height: 120,
     width: 120,
@@ -192,5 +200,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF6C00',
     transform: [{ rotate: '90deg' }],
   },
-  lineHorizontal: { height: 1, width: 13, backgroundColor: '#FF6C00' },
+  lineHorizontal: {
+    height: 1,
+    width: 13,
+    backgroundColor: '#FF6C00',
+  },
 });
