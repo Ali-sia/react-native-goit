@@ -1,13 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import CustomInput from '../components/CustomInput';
 
 export default function Login() {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  function handleCloseKeyboard() {
+    setIsShowKeyboard(true);
+    Keyboard.dismiss();
+  }
 
   function handleFormSubmit() {
     console.log({ email, password });
@@ -16,55 +31,81 @@ export default function Login() {
   }
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.container}>
-        {/* page title */}
-        <Text style={styles.title}>Увійти</Text>
-        {/* email input */}
-        <CustomInput
-          value={email}
-          setValue={setEmail}
-          placeholder={'Електронна пошта'}
-          onSubmitEditing={handleFormSubmit}
-        />
-        {/* password */}
-        <View style={styles.passwordContainer}>
-          {/* password input */}
-          <CustomInput
-            value={password}
-            setValue={setPassword}
-            placeholder={'Пароль'}
-            onSubmitEditing={handleFormSubmit}
-            secureTextEntry={isPasswordHidden}
-          />
-          {/* show password btn */}
-          <TouchableOpacity
-            style={styles.showPassword}
-            onPress={() => setIsPasswordHidden(!isPasswordHidden)}
-          >
-            <Text style={styles.showPasswordText}>Показати</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* login btn */}
-        <TouchableOpacity style={styles.formButton} onPress={handleFormSubmit}>
-          <Text style={styles.btnText}>Увійти</Text>
-        </TouchableOpacity>
-        {/* link to register */}
-        <TouchableOpacity
-          style={styles.formLink}
-          onPress={() => Alert.alert('goto register')}
+    <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
+      <View style={styles.containerUnder}>
+        <ImageBackground
+          source={require('../../assets/images/RegisterLoginBG.png')}
+          style={styles.background}
         >
-          <Text style={styles.linkText}>Немає аккаунту? Зареєструватися</Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.mainContainer}>
+            <View style={styles.container}>
+              {/* page title */}
+              <Text style={styles.title}>Увійти</Text>
+              {/* email input */}
+              <CustomInput
+                value={email}
+                setValue={setEmail}
+                placeholder={'Електронна пошта'}
+                onSubmitEditing={handleFormSubmit}
+                keyboardShow={setIsShowKeyboard}
+              />
+              {/* password */}
+              <View style={styles.passwordContainer}>
+                {/* password input */}
+                <CustomInput
+                  value={password}
+                  setValue={setPassword}
+                  placeholder={'Пароль'}
+                  onSubmitEditing={handleFormSubmit}
+                  secureTextEntry={isPasswordHidden}
+                  keyboardShow={setIsShowKeyboard}
+                />
+                {/* show password btn */}
+                <TouchableOpacity
+                  style={styles.showPassword}
+                  onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+                >
+                  <Text style={styles.showPasswordText}>Показати</Text>
+                </TouchableOpacity>
+              </View>
 
-      <StatusBar style="auto" />
-    </View>
+              {/* login btn */}
+              <TouchableOpacity
+                style={styles.formButton}
+                onPress={handleFormSubmit}
+              >
+                <Text style={styles.btnText}>Увійти</Text>
+              </TouchableOpacity>
+              {/* link to register */}
+              <TouchableOpacity
+                style={styles.formLink}
+                onPress={() => navigation.navigate('RegistrationScreen')}
+              >
+                <Text style={styles.linkText}>
+                  Немає аккаунту? Зареєструватися
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
+  containerUnder: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    boxSizing: 'border-box',
+    // paddingTop: Constants.statusBarHeight,
+  },
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   mainContainer: {
     flex: 1,
     justifyContent: 'flex-end',

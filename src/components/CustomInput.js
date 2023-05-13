@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, Keyboard } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 
 export default function CustomInput({
   value,
   setValue,
   placeholder,
-  // onSubmitEditing,
   secureTextEntry = false,
   keyboardShow,
 }) {
