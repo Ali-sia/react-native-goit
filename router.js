@@ -78,7 +78,11 @@ export default function useRoute(isAuth) {
         // })}
       />
       <MainTab.Screen name="CreateScreen" component={Create} />
-      <MainTab.Screen name="ProfileScreen" component={Profile} />
+      <MainTab.Screen
+        name="ProfileScreen"
+        component={Profile}
+        options={{ headerShown: false }}
+      />
     </MainTab.Navigator>
   );
 }
