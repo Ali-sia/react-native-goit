@@ -52,3 +52,51 @@ export default function Post({
   );
 }
 
+const styles = StyleSheet.create({
+  post: {
+    padding: 16,
+    width: '100%',
+    color: '#212121',
+  },
+  additionContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  image: {
+    width: '100%',
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  title: {
+    marginVertical: 8,
+    fontFamily: 'robotoMedium',
+    fontSize: 16,
+    lineHeight: 19,
+  },
+  reactionHolder: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  commentsHolder: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginRight: 24,
+  },
+  commentsIcon: {
+    marginRight: 6,
+  },
+  commentsCount: { color: '#BDBDBD' },
+  likesHolder: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  likesIcon: { marginRight: 6 },
+  likesCount: { color: '#BDBDBD' },
+  locationHolder: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  locationIcon: { marginRight: 4 },
+  locationText: {},
+});
