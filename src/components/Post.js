@@ -57,11 +57,14 @@ const styles = StyleSheet.create({
     padding: 16,
     width: '100%',
     color: '#212121',
+    fontSize: 16,
+    lineHeight: 19,
   },
   additionContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   image: {
     width: '100%',
@@ -71,32 +74,44 @@ const styles = StyleSheet.create({
   title: {
     marginVertical: 8,
     fontFamily: 'robotoMedium',
-    fontSize: 16,
-    lineHeight: 19,
   },
   reactionHolder: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
   },
   commentsHolder: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     marginRight: 24,
   },
   commentsIcon: {
     marginRight: 6,
   },
-  commentsCount: { color: '#BDBDBD' },
+  commentsCount: {
+    color: '#BDBDBD',
+  },
   likesHolder: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  likesIcon: { marginRight: 6 },
-  likesCount: { color: '#BDBDBD' },
+  likesIcon: {
+    marginRight: 6,
+  },
+  likesCount: {
+    color: '#BDBDBD',
+  },
   locationHolder: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  locationIcon: { marginRight: 4 },
-  locationText: {},
+  locationIcon: {
+    marginRight: 4,
+  },
+  locationText: {
+    textDecorationLine: 'underline',
+  },
 });
