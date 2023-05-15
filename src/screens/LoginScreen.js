@@ -63,6 +63,7 @@ export default function Login() {
                 {/* show password btn */}
                 <TouchableOpacity
                   style={styles.showPassword}
+                  activeOpacity={0.8}
                   onPress={() => setIsPasswordHidden(!isPasswordHidden)}
                 >
                   <Text style={styles.showPasswordText}>Показати</Text>
@@ -72,6 +73,7 @@ export default function Login() {
               {/* login btn */}
               <TouchableOpacity
                 style={styles.formButton}
+                activeOpacity={0.8}
                 onPress={() => {
                   handleFormSubmit();
                   navigation.navigate('HomeScreen');

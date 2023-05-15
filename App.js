@@ -70,6 +70,7 @@ export default function App() {
             headerRight: () => (
               <TouchableOpacity
                 style={styles.logoutIcon}
+                activeOpacity={0.8}
                 onPress={() => navigation.navigate('LoginScreen')}
               >
                 <Image

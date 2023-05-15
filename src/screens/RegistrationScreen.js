@@ -45,9 +45,10 @@ export default function Register() {
           <View style={styles.mainContainer}>
             <View style={styles.container}>
               {/* avatar input */}
-              <TouchableOpacity style={styles.imageInput}>
+              <TouchableOpacity style={styles.imageInput} activeOpacity={0.8}>
                 <TouchableOpacity
                   style={styles.imageInputIcon}
+                  activeOpacity={0.8}
                   onPress={() => Alert.alert('add photo')}
                 >
                   <Text style={styles.lineVertical}></Text>
@@ -86,6 +87,7 @@ export default function Register() {
                 {/* show password btn */}
                 <TouchableOpacity
                   style={styles.showPassword}
+                  activeOpacity={0.8}
                   onPress={() => setIsPasswordHidden(!isPasswordHidden)}
                 >
                   <Text style={styles.showPasswordText}>Показати</Text>
@@ -95,6 +97,7 @@ export default function Register() {
               {/* register btn */}
               <TouchableOpacity
                 style={styles.formButton}
+                activeOpacity={0.8}
                 onPress={() => {
                   handleFormSubmit();
                   handleCloseKeyboard();

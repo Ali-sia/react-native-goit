@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 
 import locationIcon from '../../assets/images/icons/location.png';
@@ -7,6 +7,8 @@ import commentsFullIcon from '../../assets/images/icons/messageFull.png';
 import likesIcon from '../../assets/images/icons/thumbsUp.png';
 import likesFullIcon from '../../assets/images/icons/thumbsUpFull.png';
 
+//TODO
+// add button to likes and comments
 export default function Post({
   postImg,
   postName,
