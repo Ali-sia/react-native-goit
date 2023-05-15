@@ -31,40 +31,51 @@ export default function useRoute(isAuth) {
     );
   }
   return (
-    <MainTab.Navigator>
+    <MainTab.Navigator
+      screenOptions={
+        {
+          // tabBarShowLabel: false,
+        }
+      }
+    >
       <MainTab.Screen
         name="HomeScreen"
         component={Home}
-        options={({ navigation }) => ({
-          title: 'Публікації',
-          headerStyle: {
-            backgroundColor: '#ffffff',
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 0.5 },
-            shadowOpacity: 0.3,
-            shadowRadius: 0,
-            elevation: 1,
-          },
-          headerTintColor: '#212121',
-          headerTitleStyle: {
-            fontFamily: 'robotoMedium',
-            fontSize: 17,
-            lineHeight: 22,
-          },
-          headerTitleAlign: 'center',
-          headerLeft: () => <View style={{ width: 0 }}></View>,
-          headerRight: () => (
-            <TouchableOpacity
-              style={styles.logoutIcon}
-              activeOpacity={0.8}
-              onPress={() => navigation.navigate('LoginScreen')}
-            >
-              <Image
-                source={require('./assets/images/icons/logout.png')}
-              ></Image>
-            </TouchableOpacity>
-          ),
-        })}
+        // options={{
+        //   tabBarIcon: ({ focused, size, color }) => {
+        //     // <Image source={require('./assets/images/icons/menu.svg')}></Image>;
+        //   },
+        // }}
+        // options={({ navigation }) => ({
+        //   title: 'Публікації',
+        //   headerStyle: {
+        //     backgroundColor: '#ffffff',
+        //     shadowColor: '#000',
+        //     shadowOffset: { width: 0, height: 0.5 },
+        //     shadowOpacity: 0.3,
+        //     shadowRadius: 0,
+        //     elevation: 1,
+        //   },
+        //   headerTintColor: '#212121',
+        //   headerTitleStyle: {
+        //     fontFamily: 'robotoMedium',
+        //     fontSize: 17,
+        //     lineHeight: 22,
+        //   },
+        //   headerTitleAlign: 'center',
+        //   headerLeft: () => <View style={{ width: 0 }}></View>,
+        //   headerRight: () => (
+        //     <TouchableOpacity
+        //       style={styles.logoutIcon}
+        //       activeOpacity={0.8}
+        //       onPress={() => navigation.navigate('LoginScreen')}
+        //     >
+        //   <Image
+        //     source={require('./assets/images/icons/logout.png')}
+        //   ></Image>
+        //     </TouchableOpacity>
+        //   ),
+        // })}
       />
       <MainTab.Screen name="CreateScreen" component={Create} />
       <MainTab.Screen name="ProfileScreen" component={Profile} />

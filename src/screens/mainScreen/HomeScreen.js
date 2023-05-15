@@ -9,12 +9,8 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import Post from '../../components/Post';
-import Footer from '../../components/Footer';
-
-import postExample1 from '../../../assets/images/postExample1.png';
-import postExample2 from '../../../assets/images/postExample2.png';
-import postExample3 from '../../../assets/images/postExample3.png';
+// import Footer from '../../components/Footer';
+import PostList from '../../components/PostList';
 
 export default function Home() {
   const navigation = useNavigation();
@@ -25,13 +21,6 @@ export default function Home() {
     setIsShowKeyboard(true);
     Keyboard.dismiss();
   }
-
-  const commentsFake = [
-    { author: 'ffff', text: 'super photo' },
-    { author: 'aaaa', text: 'perfecto' },
-    { author: 'rrrr', text: '!!!!! incredible!!!!!!!!!!!' },
-  ];
-  const likes = 0;
 
   return (
     <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
@@ -49,29 +38,9 @@ export default function Home() {
         </View>
 
         <View style={styles.containerPosts}>
-          <Post
-            postImg={postExample1}
-            postName="Лес"
-            comments={commentsFake}
-            likes={likes}
-            postLocation=" Ukraine"
-          />
-          <Post
-            postImg={postExample2}
-            postName="Закат на Черном море"
-            comments={commentsFake}
-            likes={likes}
-            postLocation="Ukraine"
-          />
-          <Post
-            postImg={postExample3}
-            postName="Старый домик в Венеции"
-            comments={commentsFake}
-            likes={likes}
-            postLocation="Italy"
-          />
+          <PostList />
         </View>
-        <Footer />
+        {/* <Footer /> */}
       </View>
     </TouchableWithoutFeedback>
   );
