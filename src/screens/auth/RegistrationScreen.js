@@ -1,4 +1,7 @@
+// import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import {
   StyleSheet,
   Text,
@@ -8,12 +11,13 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import CustomInput from '../components/CustomInput';
 
-export default function Login() {
+import CustomInput from '../../components/CustomInput';
+
+export default function Register() {
   const navigation = useNavigation();
 
+  const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
@@ -25,7 +29,8 @@ export default function Login() {
   }
 
   function handleFormSubmit() {
-    console.log({ email, password });
+    console.log({ login, email, password });
+    setLogin('');
     setEmail('');
     setPassword('');
   }
@@ -34,13 +39,32 @@ export default function Login() {
     <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
       <View style={styles.containerUnder}>
         <ImageBackground
-          source={require('../../assets/images/RegisterLoginBG.png')}
+          source={require('../../../assets/images/RegisterLoginBG.png')}
           style={styles.background}
         >
           <View style={styles.mainContainer}>
             <View style={styles.container}>
+              {/* avatar input */}
+              <TouchableOpacity style={styles.imageInput} activeOpacity={0.8}>
+                <TouchableOpacity
+                  style={styles.imageInputIcon}
+                  activeOpacity={0.8}
+                  onPress={() => Alert.alert('add photo')}
+                >
+                  <Text style={styles.lineVertical}></Text>
+                  <Text style={styles.lineHorizontal}></Text>
+                </TouchableOpacity>
+              </TouchableOpacity>
               {/* page title */}
-              <Text style={styles.title}>Увійти</Text>
+              <Text style={styles.title}>Реєстрація</Text>
+              {/* login input */}
+              <CustomInput
+                value={login}
+                setValue={setLogin}
+                placeholder={'Логін'}
+                onSubmitEditing={handleFormSubmit}
+                keyboardShow={setIsShowKeyboard}
+              />
               {/* email input */}
               <CustomInput
                 value={email}
@@ -70,26 +94,25 @@ export default function Login() {
                 </TouchableOpacity>
               </View>
 
-              {/* login btn */}
+              {/* register btn */}
               <TouchableOpacity
                 style={styles.formButton}
                 activeOpacity={0.8}
                 onPress={() => {
                   handleFormSubmit();
-                  navigation.navigate('HomeScreen');
+                  handleCloseKeyboard();
+                  // navigation.navigate('HomeScreen');
                 }}
               >
-                <Text style={styles.btnText}>Увійти</Text>
+                <Text style={styles.btnText}>Зареєструватися</Text>
               </TouchableOpacity>
-              {/* link to register */}
+              {/* link to login */}
               <TouchableOpacity
                 style={styles.formLink}
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate('RegistrationScreen')}
+                onPress={() => navigation.navigate('LoginScreen')}
               >
-                <Text style={styles.linkText}>
-                  Немає аккаунту? Зареєструватися
-                </Text>
+                <Text style={styles.linkText}>Вже маєте аккаунт? Увійти</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -119,8 +142,8 @@ const styles = StyleSheet.create({
     fontStyle: 'robotoRegular',
   },
   container: {
-    flex: 0.55,
-    paddingTop: 32,
+    flex: 0.65,
+    paddingTop: 92,
     paddingBottom: 45,
     paddingHorizontal: 16,
     alignItems: 'center',

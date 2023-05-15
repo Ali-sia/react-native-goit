@@ -9,12 +9,12 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import Post from '../components/Post';
-import Footer from '../components/Footer';
+import Post from '../../components/Post';
+import Footer from '../../components/Footer';
 
-import postExample1 from '../../assets/images/postExample1.png';
-import postExample2 from '../../assets/images/postExample2.png';
-import postExample3 from '../../assets/images/postExample3.png';
+import postExample1 from '../../../assets/images/postExample1.png';
+import postExample2 from '../../../assets/images/postExample2.png';
+import postExample3 from '../../../assets/images/postExample3.png';
 
 export default function Home() {
   const navigation = useNavigation();
@@ -39,7 +39,7 @@ export default function Home() {
         <View style={styles.containerUser}>
           <View style={styles.containerAvatar}>
             <Image
-              source={require('../../assets/images/avatarExample.png')}
+              source={require('../../../assets/images/avatarExample.png')}
             ></Image>
           </View>
           <View style={styles.userInfo}>

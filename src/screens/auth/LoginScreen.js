@@ -1,7 +1,4 @@
-// import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-
 import {
   StyleSheet,
   Text,
@@ -11,13 +8,12 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import CustomInput from '../../components/CustomInput';
 
-import CustomInput from '../components/CustomInput';
-
-export default function Register() {
+export default function Login() {
   const navigation = useNavigation();
 
-  const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
@@ -29,8 +25,7 @@ export default function Register() {
   }
 
   function handleFormSubmit() {
-    console.log({ login, email, password });
-    setLogin('');
+    console.log({ email, password });
     setEmail('');
     setPassword('');
   }
@@ -39,32 +34,13 @@ export default function Register() {
     <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
       <View style={styles.containerUnder}>
         <ImageBackground
-          source={require('../../assets/images/RegisterLoginBG.png')}
+          source={require('../../../assets/images/RegisterLoginBG.png')}
           style={styles.background}
         >
           <View style={styles.mainContainer}>
             <View style={styles.container}>
-              {/* avatar input */}
-              <TouchableOpacity style={styles.imageInput} activeOpacity={0.8}>
-                <TouchableOpacity
-                  style={styles.imageInputIcon}
-                  activeOpacity={0.8}
-                  onPress={() => Alert.alert('add photo')}
-                >
-                  <Text style={styles.lineVertical}></Text>
-                  <Text style={styles.lineHorizontal}></Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
               {/* page title */}
-              <Text style={styles.title}>Реєстрація</Text>
-              {/* login input */}
-              <CustomInput
-                value={login}
-                setValue={setLogin}
-                placeholder={'Логін'}
-                onSubmitEditing={handleFormSubmit}
-                keyboardShow={setIsShowKeyboard}
-              />
+              <Text style={styles.title}>Увійти</Text>
               {/* email input */}
               <CustomInput
                 value={email}
@@ -94,25 +70,26 @@ export default function Register() {
                 </TouchableOpacity>
               </View>
 
-              {/* register btn */}
+              {/* login btn */}
               <TouchableOpacity
                 style={styles.formButton}
                 activeOpacity={0.8}
                 onPress={() => {
                   handleFormSubmit();
-                  handleCloseKeyboard();
-                  navigation.navigate('HomeScreen');
+                  // navigation.navigate('HomeScreen');
                 }}
               >
-                <Text style={styles.btnText}>Зареєструватися</Text>
+                <Text style={styles.btnText}>Увійти</Text>
               </TouchableOpacity>
-              {/* link to login */}
+              {/* link to register */}
               <TouchableOpacity
                 style={styles.formLink}
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate('LoginScreen')}
+                onPress={() => navigation.navigate('RegistrationScreen')}
               >
-                <Text style={styles.linkText}>Вже маєте аккаунт? Увійти</Text>
+                <Text style={styles.linkText}>
+                  Немає аккаунту? Зареєструватися
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -142,8 +119,8 @@ const styles = StyleSheet.create({
     fontStyle: 'robotoRegular',
   },
   container: {
-    flex: 0.65,
-    paddingTop: 92,
+    flex: 0.55,
+    paddingTop: 32,
     paddingBottom: 45,
     paddingHorizontal: 16,
     alignItems: 'center',
