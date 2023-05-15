@@ -16,6 +16,7 @@ import { useFonts } from 'expo-font';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import Register from './src/screens/RegistrationScreen';
 import Login from './src/screens/LoginScreen';
 import Home from './src/screens/HomeScreen';
@@ -48,7 +49,7 @@ export default function App() {
         <MainStack.Screen
           name="HomeScreen"
           component={Home}
-          options={{
+          options={({ navigation }) => ({
             title: 'Публікації',
             headerStyle: {
               backgroundColor: '#ffffff',
@@ -69,14 +70,14 @@ export default function App() {
             headerRight: () => (
               <TouchableOpacity
                 style={styles.logoutIcon}
-                onPress={() => alert('logout function')}
+                onPress={() => navigation.navigate('LoginScreen')}
               >
                 <Image
                   source={require('./assets/images/icons/logout.png')}
                 ></Image>
               </TouchableOpacity>
             ),
-          }}
+          })}
         />
       </MainStack.Navigator>
     </NavigationContainer>
