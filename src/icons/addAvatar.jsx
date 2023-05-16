@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Svg, { Circle, Path } from 'react-native-svg';
 import { memo } from 'react';
+import Svg, { Circle, Path } from 'react-native-svg';
 
 function svgComponent(props) {
   return (
