@@ -9,7 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import Post from '../components/Post';
+import Post from './Post';
 
 import postExample1 from '../../assets/images/postExample1.png';
 import postExample2 from '../../assets/images/postExample2.png';
