@@ -13,7 +13,8 @@ import Home from './src/screens/mainScreen/HomeScreen';
 import Profile from './src/screens/mainScreen/ProfileScreen';
 import Create from './src/screens/mainScreen/CreateScreen';
 
-import LogOutIcon from './src/icons/logout';
+// import LogOutIcon from './src/icons/logout';
+import LogOutBtn from './src/components/LogOutBtn';
 import PostsIcon from './src/icons/posts';
 import AddIcon from './src/icons/add';
 import UserIcon from './src/icons/user';
@@ -71,13 +72,14 @@ export default function useRoute(isAuth) {
           },
           headerTitleAlign: 'center',
           headerRight: () => (
-            <TouchableOpacity
-              style={styles.logoutIcon}
-              activeOpacity={0.8}
-              // onPress={() => navigation.navigate('LoginScreen')}
-            >
-              <LogOutIcon stroke={'#BDBDBD'} />
-            </TouchableOpacity>
+            <LogOutBtn />
+            // <TouchableOpacity
+            //   style={styles.logoutIcon}
+            //   activeOpacity={0.8}
+            //   // onPress={() => navigation.navigate('LoginScreen')}
+            // >
+            //   <LogOutIcon stroke={'#BDBDBD'} />
+            // </TouchableOpacity>
           ),
           //tabs
           tabBarIcon: ({ focused, size, color }) => {
@@ -128,12 +130,6 @@ export default function useRoute(isAuth) {
     </MainTab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  logoutIcon: {
-    marginRight: 16,
-  },
-});
 
 {
   /* <AuthStack.Navigator initialRouteName="LoginScreen">
