@@ -8,9 +8,11 @@ import {
 } from 'react-native';
 
 import AvatarInput from '../../components/CustomAvatarInput';
+import LogOutBtn from '../../components/LogOutBtn';
+import PostList from '../../components/PostList';
 
 export default function Profile({ name, email, posts }) {
-  name = 'example name';
+  name = 'Natali Romanova';
   return (
     <View style={styles.containerUnder}>
       <ImageBackground
@@ -21,8 +23,14 @@ export default function Profile({ name, email, posts }) {
           <View style={styles.container}>
             {/* avatar input */}
             <AvatarInput />
+            <View style={styles.logOutBtn}>
+              <LogOutBtn />
+            </View>
 
             <Text style={styles.title}>{name}</Text>
+            <View style={styles.containerPosts}>
+              <PostList />
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -67,37 +75,10 @@ const styles = StyleSheet.create({
     color: '#212121',
     marginBottom: 32,
   },
-
-  imageInput: {
-    height: 120,
-    width: 120,
-    backgroundColor: '#F6F6F6',
-    borderRadius: 16,
+  logOutBtn: {
     position: 'absolute',
-    top: '-13%',
+    top: 22,
+    right: 0,
   },
-  imageInputIcon: {
-    height: 25,
-    width: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    borderColor: '#FF6C00',
-    borderRadius: 50,
-    borderWidth: 1,
-    position: 'absolute',
-    bottom: '10%',
-    right: '-10%',
-  },
-  lineVertical: {
-    height: 1,
-    width: 13,
-    backgroundColor: '#FF6C00',
-    transform: [{ rotate: '90deg' }],
-  },
-  lineHorizontal: {
-    height: 1,
-    width: 13,
-    backgroundColor: '#FF6C00',
-  },
+  containerPosts: { width: '100%', flex: 1 },
 });
