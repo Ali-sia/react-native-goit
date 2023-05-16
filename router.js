@@ -71,16 +71,7 @@ export default function useRoute(isAuth) {
             lineHeight: 22,
           },
           headerTitleAlign: 'center',
-          headerRight: () => (
-            <LogOutBtn />
-            // <TouchableOpacity
-            //   style={styles.logoutIcon}
-            //   activeOpacity={0.8}
-            //   // onPress={() => navigation.navigate('LoginScreen')}
-            // >
-            //   <LogOutIcon stroke={'#BDBDBD'} />
-            // </TouchableOpacity>
-          ),
+          headerRight: () => <LogOutBtn />,
           //tabs
           tabBarIcon: ({ focused, size, color }) => {
             return (
