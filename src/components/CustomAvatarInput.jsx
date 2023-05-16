@@ -1,13 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Alert,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import AddAvatarIcon from '../icons/addAvatar';
 
 export default function AvatarInput({ photo }) {
@@ -49,8 +40,5 @@ const styles = StyleSheet.create({
   },
   deleteImageIcon: {
     transform: [{ rotate: '45deg' }],
-
-    // fill: '#E8E8E8',
-    // stroke: '#E8E8E8',
   },
 });
