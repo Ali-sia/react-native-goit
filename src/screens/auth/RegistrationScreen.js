@@ -10,9 +10,12 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from 'react-native';
 
 import CustomInput from '../../components/CustomInput';
+
+import AddAvatarIcon from '../../icons/addAvatar';
 
 export default function Register() {
   const navigation = useNavigation();
@@ -51,8 +54,9 @@ export default function Register() {
                   activeOpacity={0.8}
                   onPress={() => Alert.alert('add photo')}
                 >
-                  <Text style={styles.lineVertical}></Text>
-                  <Text style={styles.lineHorizontal}></Text>
+                  <AddAvatarIcon fill={'#FF6C00'} stroke={'#FF6C00'} />
+                  {/* <Text style={styles.lineVertical}></Text>
+                  <Text style={styles.lineHorizontal}></Text> */}
                 </TouchableOpacity>
               </TouchableOpacity>
               {/* page title */}
@@ -212,9 +216,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffffff',
-    borderColor: '#FF6C00',
+    // borderColor: '#FF6C00',
     borderRadius: 50,
-    borderWidth: 1,
+    // borderWidth: 1,
+    // stroke: '#FF6C00',
     position: 'absolute',
     bottom: '10%',
     right: '-10%',
