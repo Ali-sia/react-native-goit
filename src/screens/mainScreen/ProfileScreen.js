@@ -5,11 +5,12 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
-  TouchableWithoutFeedback,
-  Keyboard,
 } from 'react-native';
 
-export default function Profile() {
+import AvatarInput from '../../components/CustomAvatarInput';
+
+export default function Profile({ name, email, posts }) {
+  name = 'example name';
   return (
     <View style={styles.containerUnder}>
       <ImageBackground
@@ -19,18 +20,9 @@ export default function Profile() {
         <View style={styles.mainContainer}>
           <View style={styles.container}>
             {/* avatar input */}
-            <TouchableOpacity style={styles.imageInput} activeOpacity={0.8}>
-              <TouchableOpacity
-                style={styles.imageInputIcon}
-                activeOpacity={0.8}
-                onPress={() => Alert.alert('add photo')}
-              >
-                <Text style={styles.lineVertical}></Text>
-                <Text style={styles.lineHorizontal}></Text>
-              </TouchableOpacity>
-            </TouchableOpacity>
+            <AvatarInput />
 
-            <Text style={styles.title}>Реєстрація</Text>
+            <Text style={styles.title}>{name}</Text>
           </View>
         </View>
       </ImageBackground>
