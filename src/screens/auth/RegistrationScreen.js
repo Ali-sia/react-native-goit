@@ -10,12 +10,10 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert,
 } from 'react-native';
 
 import CustomInput from '../../components/CustomInput';
-
-import AddAvatarIcon from '../../icons/addAvatar';
+import AvatarInput from '../../components/CustomAvatarInput';
 
 export default function Register() {
   const navigation = useNavigation();
@@ -47,18 +45,8 @@ export default function Register() {
         >
           <View style={styles.mainContainer}>
             <View style={styles.container}>
-              {/* avatar input */}
-              <TouchableOpacity style={styles.imageInput} activeOpacity={0.8}>
-                <TouchableOpacity
-                  style={styles.imageInputIcon}
-                  activeOpacity={0.8}
-                  onPress={() => Alert.alert('add photo')}
-                >
-                  <AddAvatarIcon fill={'#FF6C00'} stroke={'#FF6C00'} />
-                  {/* <Text style={styles.lineVertical}></Text>
-                  <Text style={styles.lineHorizontal}></Text> */}
-                </TouchableOpacity>
-              </TouchableOpacity>
+              {/* TODO create function to load photo */}
+              <AvatarInput />
               {/* page title */}
               <Text style={styles.title}>Реєстрація</Text>
               {/* login input */}
@@ -131,7 +119,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
     boxSizing: 'border-box',
-    // paddingTop: Constants.statusBarHeight,
   },
   background: {
     flex: 1,
@@ -201,38 +188,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     color: '#1B4371',
-  },
-  imageInput: {
-    height: 120,
-    width: 120,
-    backgroundColor: '#F6F6F6',
-    borderRadius: 16,
-    position: 'absolute',
-    top: '-15%',
-  },
-  imageInputIcon: {
-    height: 25,
-    width: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    // borderColor: '#FF6C00',
-    borderRadius: 50,
-    // borderWidth: 1,
-    // stroke: '#FF6C00',
-    position: 'absolute',
-    bottom: '10%',
-    right: '-10%',
-  },
-  lineVertical: {
-    height: 1,
-    width: 13,
-    backgroundColor: '#FF6C00',
-    transform: [{ rotate: '90deg' }],
-  },
-  lineHorizontal: {
-    height: 1,
-    width: 13,
-    backgroundColor: '#FF6C00',
   },
 });
