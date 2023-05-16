@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-// import Footer from '../../components/Footer';
 import PostList from '../../components/PostList';
 
 export default function Home() {
