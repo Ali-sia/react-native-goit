@@ -50,30 +50,32 @@ const postsFake = [
 
 export default function PostList() {
   return (
-    // <SafeAreaView style={styles.container}>
-    <FlatList
-      data={postsFake}
-      renderItem={({ item }) => (
-        //   <Text>{typeof item}</Text>
-        <Post
-          postImg={item.postImg}
-          postName={item.postName}
-          comments={item.comments}
-          likes={item.likes}
-          postLocation={item.postLocation}
+    <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea}>
+        <FlatList
+          data={postsFake}
+          renderItem={({ item }) => (
+            <Post
+              postImg={item.postImg}
+              postName={item.postName}
+              comments={item.comments}
+              likes={item.likes}
+              postLocation={item.postLocation}
+            />
+          )}
+          keyExtractor={item => item.postId}
         />
-      )}
-      keyExtractor={item => item.postId}
-    />
-    // </SafeAreaView>
+      </SafeAreaView>
+    </View>
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     width: '100%',
-//     // justifyContent: 'center',
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+    width: '100%',
+  },
+});
