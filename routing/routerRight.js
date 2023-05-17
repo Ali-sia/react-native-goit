@@ -2,23 +2,22 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Register from '../src/screens/auth/RegistrationScreen';
+import Login from '../src/screens/auth/LoginScreen';
+import Home from '../src/screens/mainScreen/HomeScreen';
+import Profile from '../src/screens/mainScreen/ProfileScreen';
+import Create from '../src/screens/mainScreen/CreateScreen';
+import Comment from '../src/screens/mainScreen/CommentScreen';
+
+import LogOutBtn from '../src/components/LogOutBtn';
+import PostsIcon from '../src/icons/posts';
+import AddIcon from '../src/icons/add';
+import UserIcon from '../src/icons/user';
+
+import { TabBarIcon } from '../src/components/TabBarIcon';
+
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
-
-import Register from './src/screens/auth/RegistrationScreen';
-import Login from './src/screens/auth/LoginScreen';
-import Home from './src/screens/mainScreen/HomeScreen';
-import Profile from './src/screens/mainScreen/ProfileScreen';
-import Create from './src/screens/mainScreen/CreateScreen';
-import Comment from './src/screens/mainScreen/CommentScreen';
-
-// import LogOutIcon from './src/icons/logout';
-import LogOutBtn from './src/components/LogOutBtn';
-import PostsIcon from './src/icons/posts';
-import AddIcon from './src/icons/add';
-import UserIcon from './src/icons/user';
-
-import { TabBarIcon } from './src/components/TabBarIcon';
 
 export default function useRoute(isAuth) {
   if (!isAuth) {
@@ -117,11 +116,11 @@ export default function useRoute(isAuth) {
           },
         }}
       />
-      <MainTab.Screen
+      {/* <MainTab.Screen
         name="CommentScreen"
         component={Comment}
-        // options={{ tabBarVisible: false }}
-      />
+        options={{ tabBarVisible: false }}
+      /> */}
     </MainTab.Navigator>
   );
 }

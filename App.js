@@ -4,7 +4,8 @@ import 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 
-import useRoute from './router';
+import useRoute from './routing/router';
+// import useRoute from './routing/routerRight';
 
 export default function App() {
   const routing = useRoute({});

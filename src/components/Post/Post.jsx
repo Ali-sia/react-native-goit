@@ -36,10 +36,10 @@ export default function Post({
             style={styles.commentsHolder}
             onPress={() => {
               console.log('press comments');
-              // navigation.navigate('HomeScreen', {
-              //   screen: 'CommentScreen',
-              //   params: { postImg, comments },
-              // });
+              navigation.navigate('CommentScreen', {
+                prevScreen: 'HomeScreen',
+                params: { postImg, comments },
+              });
             }}
           >
             <Image
