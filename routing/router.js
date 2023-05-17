@@ -8,6 +8,7 @@ import Home from '../src/screens/mainScreen/HomeScreen';
 import Profile from '../src/screens/mainScreen/ProfileScreen';
 import Create from '../src/screens/mainScreen/CreateScreen';
 import Comment from '../src/screens/mainScreen/CommentScreen';
+import Map from '../src/screens/mainScreen/MapScreen';
 
 import LogOutBtn from '../src/components/LogOutBtn';
 import PostsIcon from '../src/icons/posts';
@@ -120,14 +121,14 @@ const HomeNav = ({ navigation }) => {
           headerShown: false,
         }}
       />
-      {/* <NestedScreen.Screen
-          name="MapScreen"
-          component={MapScreen}
-          options={{
-            headerBackTitleVisible: false,
-            headerTintColor: '#212121',
-          }}
-        /> */}
+      <NestedScreen.Screen
+        name="MapScreen"
+        component={Map}
+        options={{
+          headerBackTitleVisible: false,
+          headerTintColor: '#212121',
+        }}
+      />
       <NestedScreen.Screen
         name="CommentScreen"
         component={Comment}

@@ -35,7 +35,6 @@ export default function Post({
           <TouchableOpacity
             style={styles.commentsHolder}
             onPress={() => {
-              console.log('press comments');
               navigation.navigate('CommentScreen', {
                 prevScreen: 'HomeScreen',
                 params: { postImg, comments },
@@ -58,10 +57,17 @@ export default function Post({
             <Text style={likes === 0 && styles.likesCount}>{likes}</Text>
           </View>
         </View>
-        <View style={styles.locationHolder}>
+        <TouchableOpacity
+          style={styles.locationHolder}
+          onPress={() => {
+            navigation.navigate('MapScreen', {
+              prevScreen: 'HomeScreen',
+            });
+          }}
+        >
           <Image style={styles.locationIcon} source={locationIcon}></Image>
           <Text style={styles.locationText}>{postLocation}</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
