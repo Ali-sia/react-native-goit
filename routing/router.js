@@ -73,7 +73,7 @@ export function HomeTabs() {
       />
 
       <Tabs.Screen
-        name="CreateScreen"
+        name="Створити публікацію"
         component={Create}
         options={{
           tabBarIcon: ({ focused, size, color }) => {
