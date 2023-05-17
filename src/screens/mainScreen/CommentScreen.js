@@ -43,7 +43,7 @@ export default function Comment() {
             <TouchableOpacity
               style={styles.iconWrapper}
               onPress={() => alert('send comment')}
-              activeOpacity={0.7}
+              activeOpacity={0.8}
             >
               <ArrowUpIcon stroke={'#ffffff'} />
             </TouchableOpacity>
