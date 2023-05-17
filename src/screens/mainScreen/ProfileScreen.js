@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     flex: 0.75,
     paddingTop: 92,
     paddingBottom: 45,
-    paddingHorizontal: 16,
     alignItems: 'center',
     backgroundColor: '#ffffff',
     borderTopRightRadius: 25,
@@ -80,5 +79,8 @@ const styles = StyleSheet.create({
     top: 22,
     right: 0,
   },
-  containerPosts: { width: '100%', flex: 1 },
+  containerPosts: {
+    width: '100%',
+    flex: 1,
+  },
 });
