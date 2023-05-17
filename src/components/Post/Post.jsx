@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import locationIcon from '../../assets/images/icons/location.png';
-import commentsIcon from '../../assets/images/icons/message.png';
-import commentsFullIcon from '../../assets/images/icons/messageFull.png';
-import likesIcon from '../../assets/images/icons/thumbsUp.png';
-import likesFullIcon from '../../assets/images/icons/thumbsUpFull.png';
+import locationIcon from '../../../assets/images/icons/location.png';
+import commentsIcon from '../../../assets/images/icons/message.png';
+import commentsFullIcon from '../../../assets/images/icons/messageFull.png';
+import likesIcon from '../../../assets/images/icons/thumbsUp.png';
+import likesFullIcon from '../../../assets/images/icons/thumbsUpFull.png';
 
 //TODO
 // add button to likes and comments
@@ -16,6 +17,8 @@ export default function Post({
   likes,
   postLocation,
 }) {
+  const navigation = useNavigation();
+
   return (
     <View
       style={styles.post}
@@ -24,11 +27,21 @@ export default function Post({
       //   }}
       //   activeOpacity={0.8}
     >
+      {/* TODO переробити іконки */}
       <Image source={postImg} style={styles.image}></Image>
       <Text style={styles.title}>{postName}</Text>
       <View style={styles.additionContainer}>
         <View style={styles.reactionHolder}>
-          <View style={styles.commentsHolder}>
+          <TouchableOpacity
+            style={styles.commentsHolder}
+            onPress={() => {
+              console.log('press comments');
+              // navigation.navigate('HomeScreen', {
+              //   screen: 'CommentScreen',
+              //   params: { postImg, comments },
+              // });
+            }}
+          >
             <Image
               style={styles.commentsIcon}
               source={comments.length === 0 ? commentsIcon : commentsFullIcon}
@@ -36,7 +49,7 @@ export default function Post({
             <Text style={comments.length === 0 && styles.commentsCount}>
               {comments.length}
             </Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.likesHolder}>
             <Image
               style={styles.likesIcon}

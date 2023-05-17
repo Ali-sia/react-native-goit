@@ -11,9 +11,9 @@ import {
 
 import Post from './Post';
 
-import postExample1 from '../../assets/images/postExample1.png';
-import postExample2 from '../../assets/images/postExample2.png';
-import postExample3 from '../../assets/images/postExample3.png';
+import postExample1 from '../../../assets/images/postExample1.png';
+import postExample2 from '../../../assets/images/postExample2.png';
+import postExample3 from '../../../assets/images/postExample3.png';
 
 const commentsFake = [
   { author: 'ffff', text: 'super photo' },
