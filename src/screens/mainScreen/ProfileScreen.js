@@ -9,7 +9,7 @@ import {
 
 import AvatarInput from '../../components/CustomAvatarInput';
 import LogOutBtn from '../../components/LogOutBtn';
-import PostList from '../../components/PostList';
+import PostList from '../../components/Post/PostList';
 
 export default function Profile({ name, email, posts }) {
   name = 'Natali Romanova';

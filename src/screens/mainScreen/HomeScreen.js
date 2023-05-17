@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import PostList from '../../components/PostList';
+import PostList from '../../components/Post/PostList';
 
 export default function Home() {
   const navigation = useNavigation();
