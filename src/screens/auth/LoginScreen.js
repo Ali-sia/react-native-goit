@@ -46,7 +46,6 @@ export default function Login() {
                 value={email}
                 setValue={setEmail}
                 placeholder={'Електронна пошта'}
-                onSubmitEditing={handleFormSubmit}
                 keyboardShow={setIsShowKeyboard}
               />
               {/* password */}
@@ -56,7 +55,6 @@ export default function Login() {
                   value={password}
                   setValue={setPassword}
                   placeholder={'Пароль'}
-                  onSubmitEditing={handleFormSubmit}
                   secureTextEntry={isPasswordHidden}
                   keyboardShow={setIsShowKeyboard}
                 />
