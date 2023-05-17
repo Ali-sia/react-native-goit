@@ -27,13 +27,28 @@ export function HomeTabs() {
       initialRouteName="Home"
       screenOptions={{
         tabBarShowLabel: false,
-        // tabBarActiveTintColor: '#FF6C00',
         tabBarInactiveTintColor: '#212121',
         tabBarStyle: {
           height: 58,
           display: 'flex',
           alignItems: 'center',
         },
+
+        headerStyle: {
+          backgroundColor: '#ffffff',
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 0.5 },
+          shadowOpacity: 0.3,
+          shadowRadius: 0,
+          elevation: 1,
+        },
+        headerTintColor: '#212121',
+        headerTitleStyle: {
+          fontFamily: 'robotoMedium',
+          fontSize: 17,
+          lineHeight: 22,
+        },
+        headerTitleAlign: 'center',
       }}
     >
       <Tabs.Screen
@@ -41,21 +56,7 @@ export function HomeTabs() {
         component={Home}
         options={({ navigation }) => ({
           title: 'Публікації',
-          headerStyle: {
-            backgroundColor: '#ffffff',
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 0.5 },
-            shadowOpacity: 0.3,
-            shadowRadius: 0,
-            elevation: 1,
-          },
-          headerTintColor: '#212121',
-          headerTitleStyle: {
-            fontFamily: 'robotoMedium',
-            fontSize: 17,
-            lineHeight: 22,
-          },
-          headerTitleAlign: 'center',
+
           headerRight: () => <LogOutBtn />,
           //tabs
           tabBarIcon: ({ focused, size, color }) => {
