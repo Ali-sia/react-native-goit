@@ -21,9 +21,8 @@ export default function CreatePost() {
   const [location, setLocation] = useState('');
 
   const [isPhotoLoad, setIsPhotoLoad] = useState(false);
-  const [photo, sethoto] = useState('');
+  const [photo, setPhoto] = useState('');
 
-  const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -41,6 +40,13 @@ export default function CreatePost() {
 
   const isFieldsFull = location != '' && postTitle != '';
 
+  const takePhoto = async () => {
+    if (cameraRef) {
+      const { uri } = await cameraRef.takePictureAsync();
+      setPhoto(uri);
+      await MediaLibrary.createAssetAsync(uri);
+    }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
