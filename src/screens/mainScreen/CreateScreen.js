@@ -100,6 +100,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   photoContainer: {
+    position: 'relative',
+
     width: '100%',
     backgroundColor: '#F6F6F6',
     height: 240,
@@ -109,17 +111,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // preview: {
+  //   position: 'absolute',
+  //   zIndex: 1,
+  //   top: 0,
+  //   left: 0,
+
+  //   width: '100%',
+  //   height: '100%',
+  //   backgroundColor: '#f0f',
+  // },
   // camera: {
-  //   width: 60,
-  //   height: 80,
+  //   width: '100%',
+  //   height: '100%',
   // },
   iconPhotoContainer: {
     position: 'relative',
-
+    zIndex: 100,
     height: 60,
     width: 60,
     borderRadius: 30,
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
 
     display: 'flex',
     alignItems: 'center',
