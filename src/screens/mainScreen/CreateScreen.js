@@ -19,7 +19,13 @@ import CameraIcon from '../../icons/camera';
 export default function CreatePost() {
   const [postTitle, setPostTitle] = useState('');
   const [location, setLocation] = useState('');
+
   const [isPhotoLoad, setIsPhotoLoad] = useState(false);
+  const [photo, sethoto] = useState('');
+
+  const [hasPermission, setHasPermission] = useState(null);
+  const [cameraRef, setCameraRef] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   function handleCloseKeyboard() {
