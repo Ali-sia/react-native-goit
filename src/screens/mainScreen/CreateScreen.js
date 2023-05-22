@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
 import {
   StyleSheet,
   View,
@@ -12,9 +11,10 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { Camera } from 'expo-camera';
+import * as MediaLibrary from 'expo-media-library';
 
 import CameraIcon from '../../icons/camera';
-import CustomInput from '../../components/CustomInput';
 
 export default function CreatePost() {
   const [postTitle, setPostTitle] = useState('');
