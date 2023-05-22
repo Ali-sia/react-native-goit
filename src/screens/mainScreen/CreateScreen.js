@@ -93,13 +93,19 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#F6F6F6',
     height: 240,
-    borderRadius: 8,
+    borderRadius: 15,
 
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // camera: {
+  //   width: 60,
+  //   height: 80,
+  // },
   iconPhotoContainer: {
+    position: 'relative',
+
     height: 60,
     width: 60,
     borderRadius: 30,
@@ -108,6 +114,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  inner: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -12 }, { translateY: -12 }],
+    width: '100%',
+    height: '100%',
   },
   textPhotoContainer: {
     color: '#BDBDBD',
@@ -135,7 +149,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     paddingVertical: 16,
   },
-
   fullFormButton: {
     backgroundColor: '#FF6C00',
   },
