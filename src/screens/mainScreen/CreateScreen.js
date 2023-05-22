@@ -40,7 +40,7 @@ export default function CreatePost() {
   }
 
   const isFieldsFull = location != '' && postTitle != '';
-  console.log('---> ~ CreatePost ~ isFieldsFull:', isFieldsFull);
+
 
   return (
     <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
