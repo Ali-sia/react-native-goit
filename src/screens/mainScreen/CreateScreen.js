@@ -46,9 +46,13 @@ export default function CreatePost() {
     <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
       <View style={styles.container}>
         <View style={styles.photoContainer}>
-          <View style={styles.iconPhotoContainer}>
-            <CameraIcon fill={'#BDBDBD'} />
-          </View>
+          <Camera style={styles.camera} type={type} ref={setCameraRef}>
+            <View style={styles.iconPhotoContainer}>
+              <TouchableOpacity onPress={takePhoto} style={styles.inner}>
+                <CameraIcon fill={'#BDBDBD'} />
+              </TouchableOpacity>
+            </View>
+          </Camera>
         </View>
         <Text style={styles.textPhotoContainer}>
           {!isPhotoLoad ? 'Завантажте фото' : 'Редагувати фото'}
