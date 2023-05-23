@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,12 +7,19 @@ import {
   Keyboard,
   Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import PostList from '../../components/Post/PostList';
 
-export default function Home() {
-  const navigation = useNavigation();
+export default function Home({ route }) {
+  const [posts, setPosts] = useState([]);
+  console.log('route.params', route.params);
+
+  useEffect(() => {
+    if (route.params) {
+      setPosts(prevState => [...prevState, route.params]);
+    }
+  }, [route.params]);
+  console.log('posts', posts);
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -37,9 +44,8 @@ export default function Home() {
         </View>
 
         <View style={styles.containerPosts}>
-          <PostList />
+          <PostList posts={posts} />
         </View>
-        {/* <Footer /> */}
       </View>
     </TouchableWithoutFeedback>
   );
