@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   StyleSheet,
@@ -11,6 +12,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import { Camera } from 'expo-camera';
+import * as Location from 'expo-location';
 import * as MediaLibrary from 'expo-media-library';
 
 import CameraIcon from '../../icons/camera';
@@ -18,9 +20,26 @@ import CameraIcon from '../../icons/camera';
 export default function CreatePost({ navigation }) {
   const [postTitle, setPostTitle] = useState('');
   const [location, setLocation] = useState('');
+  const [locationName, setLocationName] = useState('');
 
   const [cameraRef, setCameraRef] = useState(null);
   const [photo, setPhoto] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.log('Permission to access location was denied');
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      const coords = {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      };
+      setLocation(coords);
+    })();
+  }, []);
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   function handleCloseKeyboard() {

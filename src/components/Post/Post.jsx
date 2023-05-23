@@ -10,15 +10,17 @@ import likesFullIcon from '../../../assets/images/icons/thumbsUpFull.png';
 
 //TODO
 // add button to likes and comments
-export default function Post({
-  postImg,
-  postName,
-  comments,
-  likes,
-  postLocation,
-}) {
-  const navigation = useNavigation();
-
+export default function Post({ post }) {
+  console.log('---> ~ Post ~ post:', post);
+  const {
+    postId,
+    postTitle,
+    likes,
+    imgUri,
+    locationName,
+    locationData,
+    comments,
+  } = post;
   return (
     <View
       style={styles.post}
@@ -28,8 +30,8 @@ export default function Post({
       //   activeOpacity={0.8}
     >
       {/* TODO переробити іконки */}
-      <Image source={postImg} style={styles.image}></Image>
-      <Text style={styles.title}>{postName}</Text>
+      <Image source={{ imgUri }} style={styles.image}></Image>
+      <Text style={styles.title}>{postTitle}</Text>
       <View style={styles.additionContainer}>
         <View style={styles.reactionHolder}>
           <TouchableOpacity
@@ -66,7 +68,7 @@ export default function Post({
           }}
         >
           <Image style={styles.locationIcon} source={locationIcon}></Image>
-          <Text style={styles.locationText}>{postLocation}</Text>
+          <Text style={styles.locationText}>{locationName}</Text>
         </TouchableOpacity>
       </View>
     </View>
