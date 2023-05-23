@@ -51,8 +51,16 @@ export default function CreatePost() {
     <TouchableWithoutFeedback onPress={() => handleCloseKeyboard()}>
       <View style={styles.container}>
         {/* <View style={styles.photoContainer}> */}
-        <Camera style={styles.photoContainer} type={type} ref={setCameraRef}>
-          {photo && <Image source={{ uri: photo }} />}
+        <Camera
+          style={styles.photoContainer}
+          type={Camera.Constants.Type.back}
+          ref={setCameraRef}
+        >
+          {photo && (
+            <View style={styles.preview}>
+              <Image style={styles.previewImg} source={{ uri: photo }} />
+            </View>
+          )}
 
           <View style={styles.iconPhotoContainer}>
             <TouchableOpacity onPress={takePhoto} style={styles.inner}>
