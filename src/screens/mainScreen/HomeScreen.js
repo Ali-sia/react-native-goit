@@ -12,14 +12,12 @@ import PostList from '../../components/Post/PostList';
 
 export default function Home({ route }) {
   const [posts, setPosts] = useState([]);
-  console.log('route.params', route.params);
 
   useEffect(() => {
     if (route.params) {
       setPosts(prevState => [...prevState, route.params]);
     }
   }, [route.params]);
-  console.log('posts', posts);
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
