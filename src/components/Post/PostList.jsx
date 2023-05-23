@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, View, SafeAreaView, FlatList } from 'react-native';
 
 import Post from './Post';
 
