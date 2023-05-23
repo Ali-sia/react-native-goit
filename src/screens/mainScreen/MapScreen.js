@@ -1,20 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  FlatList,
-  TextInput,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-export default function Map() {
-  return <Text>MAP WILL BE HERE!!!!!!!!!!!!!</Text>;
+import MapView, { Marker } from 'react-native-maps';
+
+export default function Map({ route }) {
+  const [location, setLocation] = useState([]);
+
+  useEffect(() => {
+    if (route.params) {
+      setLocation(route.params);
+    }
+  }, [route.params]);
+
+  const { latitude, longitude } = location;
+
+  return (
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        <Marker
+          coordinate={{
+            latitude,
+            longitude,
+          }}
+          title="travel Photo"
+        />
+      </MapView>
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    width: '100%',
+    height: '100%',
+  },
+});
