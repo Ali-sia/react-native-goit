@@ -67,7 +67,7 @@ export default function CreatePost() {
         </Camera>
         {/* </View> */}
         <Text style={styles.textPhotoContainer}>
-          {!isPhotoLoad ? 'Завантажте фото' : 'Редагувати фото'}
+          {!photo ? 'Завантажте фото' : 'Редагувати фото'}
         </Text>
 
         <TextInput
