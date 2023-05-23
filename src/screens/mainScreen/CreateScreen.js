@@ -68,7 +68,7 @@ export default function CreatePost({ navigation }) {
     setPhoto('');
   }
 
-  const isFieldsFull = location != '' && postTitle != '';
+  const isFieldsFull = location != '' && postTitle != '' && photo != '';
 
   const takePhoto = async () => {
     if (cameraRef) {
