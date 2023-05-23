@@ -11,16 +11,10 @@ import likesFullIcon from '../../../assets/images/icons/thumbsUpFull.png';
 //TODO
 // add button to likes and comments
 export default function Post({ post }) {
-  console.log('---> ~ Post ~ post:', post);
-  const {
-    postId,
-    postTitle,
-    likes,
-    imgUri,
-    locationName,
-    locationData,
-    comments,
-  } = post;
+  const navigation = useNavigation();
+
+  const { postId, postTitle, likes, imgUri, locationName, location, comments } =
+    post;
   return (
     <View
       style={styles.post}
@@ -39,7 +33,7 @@ export default function Post({ post }) {
             onPress={() => {
               navigation.navigate('CommentScreen', {
                 prevScreen: 'HomeScreen',
-                params: { postImg, comments },
+                params: { imgUri, comments },
               });
             }}
           >
@@ -62,9 +56,7 @@ export default function Post({ post }) {
         <TouchableOpacity
           style={styles.locationHolder}
           onPress={() => {
-            navigation.navigate('MapScreen', {
-              prevScreen: 'HomeScreen',
-            });
+            navigation.navigate('MapScreen', location);
           }}
         >
           <Image style={styles.locationIcon} source={locationIcon}></Image>
