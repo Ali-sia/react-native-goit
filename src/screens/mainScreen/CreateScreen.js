@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -48,22 +47,32 @@ export default function CreatePost({ navigation }) {
   }
 
   function handleFormSubmit() {
-    const postId = uuidv4();
-    navigation.navigate('HomeScreen', {
-      postId,
-      photo,
+    const newPost = {
+      postId: uuidv4(),
       postTitle,
-      location,
-    });
+      likes: 0,
+      imgUri: photo,
+      locationName,
+      locationData: {
+        latitude: location?.latitude ?? 0,
+        longitude: location?.longitude ?? 0,
+      },
+      comments: [],
+    };
+
+    navigation.navigate('HomeScreen', newPost);
 
     setPostTitle('');
-    setLocation('');
+    setLocationName('');
     setPhoto('');
   }
 
   const isFieldsFull = location != '' && postTitle != '';
 
   const takePhoto = async () => {
+    const location = await Location.getCurrentPositionAsync();
+    console.log('latitude', location.coords.latitude);
+    console.log('longitude', location.coords.longitude);
     if (cameraRef) {
       const { uri } = await cameraRef.takePictureAsync();
       setPhoto(uri);
@@ -105,8 +114,8 @@ export default function CreatePost({ navigation }) {
         ></TextInput>
         <TextInput
           style={styles.inputStyles}
-          onChangeText={text => setLocation(text)}
-          value={location}
+          onChangeText={text => setLocationName(text)}
+          value={locationName}
           placeholder={'Місцевість'}
         ></TextInput>
         <TouchableOpacity
