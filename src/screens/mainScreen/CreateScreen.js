@@ -19,11 +19,8 @@ export default function CreatePost() {
   const [postTitle, setPostTitle] = useState('');
   const [location, setLocation] = useState('');
 
-  const [isPhotoLoad, setIsPhotoLoad] = useState(false);
-  const [photo, setPhoto] = useState('');
-
   const [cameraRef, setCameraRef] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [photo, setPhoto] = useState('');
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   function handleCloseKeyboard() {
@@ -78,18 +75,12 @@ export default function CreatePost() {
           onChangeText={text => setPostTitle(text)}
           value={postTitle}
           placeholder={'Назва'}
-          onFocus={() => {
-            setIsPhotoLoad(true);
-          }}
         ></TextInput>
         <TextInput
           style={styles.inputStyles}
           onChangeText={text => setLocation(text)}
           value={location}
           placeholder={'Місцевість'}
-          onFocus={() => {
-            setIsPhotoLoad(true);
-          }}
         ></TextInput>
         <TouchableOpacity
           style={[styles.formButton, isFieldsFull && styles.fullFormButton]}
