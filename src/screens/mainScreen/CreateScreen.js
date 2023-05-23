@@ -15,7 +15,7 @@ import * as MediaLibrary from 'expo-media-library';
 
 import CameraIcon from '../../icons/camera';
 
-export default function CreatePost() {
+export default function CreatePost({ navigation }) {
   const [postTitle, setPostTitle] = useState('');
   const [location, setLocation] = useState('');
 
@@ -29,9 +29,17 @@ export default function CreatePost() {
   }
 
   function handleFormSubmit() {
-    console.log({ postTitle, location });
+    const postId = uuidv4();
+    navigation.navigate('HomeScreen', {
+      postId,
+      photo,
+      postTitle,
+      location,
+    });
+
     setPostTitle('');
     setLocation('');
+    setPhoto('');
   }
 
   const isFieldsFull = location != '' && postTitle != '';
