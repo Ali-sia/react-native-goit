@@ -24,7 +24,9 @@ export default function Post({ post }) {
       //   activeOpacity={0.8}
     >
       {/* TODO переробити іконки */}
-      <Image source={{ imgUri }} style={styles.image}></Image>
+      <View style={styles.imageHolder}>
+        <Image source={{ imgUri }} style={styles.image}></Image>
+      </View>
       <Text style={styles.title}>{postTitle}</Text>
       <View style={styles.additionContainer}>
         <View style={styles.reactionHolder}>
@@ -81,10 +83,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  image: {
+  imageHolder: {
+    height: 240,
     width: '100%',
+
+    backgroundColor: '#f0f',
     borderRadius: 10,
     overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   title: {
     marginVertical: 8,
