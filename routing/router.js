@@ -125,15 +125,28 @@ const HomeNav = ({ navigation }) => {
         component={Map}
         options={{
           headerBackTitleVisible: false,
+          title: 'Мапа',
           headerTintColor: '#212121',
+          headerTitleStyle: {
+            fontFamily: 'robotoMedium',
+            fontSize: 17,
+            lineHeight: 22,
+          },
+          headerTitleAlign: 'center',
         }}
       />
       <NestedScreen.Screen
         name="CommentScreen"
         component={Comment}
         options={{
-          //   headerBackTitleVisible: false,
+          title: 'Коментарі',
           headerTintColor: '#212121',
+          headerTitleStyle: {
+            fontFamily: 'robotoMedium',
+            fontSize: 17,
+            lineHeight: 22,
+          },
+          headerTitleAlign: 'center',
         }}
       />
     </NestedScreen.Navigator>
