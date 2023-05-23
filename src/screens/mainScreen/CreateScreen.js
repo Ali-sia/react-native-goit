@@ -18,7 +18,7 @@ import CameraIcon from '../../icons/camera';
 
 export default function CreatePost({ navigation }) {
   const [postTitle, setPostTitle] = useState('');
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(null);
   const [locationName, setLocationName] = useState('');
 
   const [cameraRef, setCameraRef] = useState(null);
@@ -53,7 +53,7 @@ export default function CreatePost({ navigation }) {
       likes: 0,
       imgUri: photo,
       locationName,
-      locationData: {
+      location: {
         latitude: location?.latitude ?? 0,
         longitude: location?.longitude ?? 0,
       },
@@ -64,15 +64,13 @@ export default function CreatePost({ navigation }) {
 
     setPostTitle('');
     setLocationName('');
+    setLocation(null);
     setPhoto('');
   }
 
   const isFieldsFull = location != '' && postTitle != '';
 
   const takePhoto = async () => {
-    const location = await Location.getCurrentPositionAsync();
-    console.log('latitude', location.coords.latitude);
-    console.log('longitude', location.coords.longitude);
     if (cameraRef) {
       const { uri } = await cameraRef.takePictureAsync();
       setPhoto(uri);
