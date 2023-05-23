@@ -18,7 +18,6 @@ import UserIcon from '../src/icons/user';
 import { TabBarIcon } from '../src/components/TabBarIcon';
 
 const AuthStack = createStackNavigator();
-// const MainTab = createBottomTabNavigator();
 const NestedScreen = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
