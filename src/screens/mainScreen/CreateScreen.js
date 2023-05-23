@@ -126,20 +126,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // preview: {
-  //   position: 'absolute',
-  //   zIndex: 1,
-  //   top: 0,
-  //   left: 0,
+  preview: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
 
-  //   width: '100%',
-  //   height: '100%',
-  //   backgroundColor: '#f0f',
-  // },
-  // camera: {
-  //   width: '100%',
-  //   height: '100%',
-  // },
+    width: '100%',
+    height: '100%',
+
+    borderColor: '#fff',
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  previewImg: {
+    width: '100%',
+    height: '100%',
+  },
+
   iconPhotoContainer: {
     position: 'relative',
     zIndex: 100,
