@@ -28,9 +28,6 @@ export const TabBarIcon = ({ IconComponent, focused, size, color }) => {
         marginHorizontal,
         fill,
         stroke,
-        // display: 'flex',
-        // alignItems: 'center',
-        // justifyContent: 'center',
       }}
     >
       <IconComponent width={size} height={size} stroke={stroke} />
