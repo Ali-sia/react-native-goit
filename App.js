@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>{routing}</NavigationContainer>;
+      <NavigationContainer>{routing}</NavigationContainer>
     </Provider>
   );
 }
