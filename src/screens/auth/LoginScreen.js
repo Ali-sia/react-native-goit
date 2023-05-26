@@ -7,6 +7,7 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
+  Dimensions,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CustomInput from '../../components/CustomInput';
@@ -109,6 +110,8 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   mainContainer: {
     flex: 1,

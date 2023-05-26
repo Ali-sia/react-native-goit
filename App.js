@@ -4,6 +4,8 @@ import 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 import useRoute from './routing/router';
 // import useRoute from './routing/routerRight';
 
@@ -19,5 +21,9 @@ export default function App() {
     return null;
   }
 
-  return <NavigationContainer>{routing}</NavigationContainer>;
+  return (
+    <Provider store={store}>
+      <NavigationContainer>{routing}</NavigationContainer>;
+    </Provider>
+  );
 }
