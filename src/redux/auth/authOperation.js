@@ -15,6 +15,10 @@ export const authSignUpUser =
   async dispatch => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, {
+        displayName: login,
+      });
+
       const userSuccess = auth.currentUser;
       dispatch(
         updateUserProfile({
