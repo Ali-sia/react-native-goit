@@ -1,7 +1,7 @@
-// import { initializeApp } from 'firebase/app';
-// import { getAuth } from 'firebase/auth';
-// import { getStorage } from 'firebase/storage';
-// import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
+import { getFirestore } from 'firebase/firestore';
 
 // Initialize Firebase
 // const firebaseConfig = {
@@ -12,8 +12,8 @@
 //   storageBucket: 'goit-social.appspot.com',
 //   appId: '1:711398970416:android:c3174357c48f2fc53f09f5 ',
 // };
-import * as firebase from 'firebase';
-import 'firebase/auth';
+// import * as firebase from 'firebase';
+// import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCzPYhnQCtwbxwypdhWGCQyWuFjY2BfLpU',
@@ -25,9 +25,9 @@ const firebaseConfig = {
   measurementId: 'G-S52V7MF4GF',
 };
 
-export default firebase.initializeApp(firebaseConfig);
-// export const app = initializeApp(firebaseConfig);
-
-// export const auth = getAuth(app);
-// export const myStorage = getStorage(app);
-// export const db = getFirestore(app);
+// export default firebase.initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+//
+export const auth = getAuth(app);
+export const myStorage = getStorage(app);
+export const db = getFirestore(app);
