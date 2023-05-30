@@ -12,10 +12,14 @@ import {
   Keyboard,
 } from 'react-native';
 
+import { useDispatch } from 'react-redux';
+import { authSignUpUser } from '../../redux/auth/authOperation';
+
 import CustomInput from '../../components/CustomInput';
 import AvatarInput from '../../components/CustomAvatarInput';
 
 export default function Register() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const [login, setLogin] = useState('');
@@ -30,7 +34,9 @@ export default function Register() {
   }
 
   function handleFormSubmit() {
-    console.log({ login, email, password });
+    const newUser = { login, email, password };
+    dispatch(authSignUpUser(newUser));
+
     setLogin('');
     setEmail('');
     setPassword('');
