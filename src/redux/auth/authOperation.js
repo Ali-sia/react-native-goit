@@ -7,7 +7,7 @@ import {
   signOut,
 } from 'firebase/auth';
 
-import { updateUserProfile, authLogOut } from './authSlice';
+import { updateUserProfile, authLogOut, authStateChange } from './authSlice';
 
 import { auth } from '../../firebase/config';
 export const authSignUpUser =
@@ -53,4 +53,22 @@ export const authSignOutUser = () => async dispatch => {
   }
 };
 
-// export const authSignOutUser = () => async (dispatch, getState) => {};
+export const authStateChangeUser = () => async dispatch => {
+  try {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const userUpdate = {
+          userId: user.uid,
+          nickName: user.displayName,
+          userEmail: user.email,
+          userAvatar: user.photoURL,
+        };
+
+        dispatch(authStateChange({ stateChange: true }));
+        dispatch(updateUserProfile(userUpdate));
+      }
+    });
+  } catch (error) {
+    console.log('error.message', error.message);
+  }
+};
