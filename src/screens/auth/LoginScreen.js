@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet,
   Text,
@@ -9,10 +10,14 @@ import {
   Keyboard,
   Dimensions,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+
+import { useDispatch } from 'react-redux';
+import { authSignInUser } from '../../redux/auth/authOperation';
+
 import CustomInput from '../../components/CustomInput';
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
@@ -26,7 +31,9 @@ export default function Login() {
   }
 
   function handleFormSubmit() {
-    console.log({ email, password });
+    const user = { email, password };
+    dispatch(authSignInUser(user));
+
     setEmail('');
     setPassword('');
   }
@@ -75,7 +82,6 @@ export default function Login() {
                 activeOpacity={0.8}
                 onPress={() => {
                   handleFormSubmit();
-                  // navigation.navigate('HomeScreen');
                 }}
               >
                 <Text style={styles.btnText}>Увійти</Text>
