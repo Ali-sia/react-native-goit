@@ -1,9 +1,9 @@
 import db from '../../firebase/config';
 
 export const authSignUpUser =
-  ({ email, password, nickname }) =>
+  ({ login, email, password }) =>
   async (dispatch, getState) => {
-    console.log('email, password, nickname', email, password, nickname);
+    console.log('login, email, password', login, email, password);
     try {
       const user = await db
         .auth()

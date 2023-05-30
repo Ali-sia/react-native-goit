@@ -10,7 +10,7 @@ import useRoute from './routing/router';
 // import useRoute from './routing/routerRight';
 
 export default function App() {
-  const routing = useRoute({});
+  const routing = useRoute(false);
 
   const [fontsLoaded] = useFonts({
     robotoBold: require('./assets/fonts/Roboto-Bold.ttf'),
