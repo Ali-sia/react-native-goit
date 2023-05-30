@@ -7,6 +7,8 @@ import {
   signOut,
 } from 'firebase/auth';
 
+import { updateUserProfile, authLogOut } from './authSlice';
+
 import { auth } from '../../firebase/config';
 export const authSignUpUser =
   ({ login, email, password }) =>
@@ -31,6 +33,13 @@ export const authSignInUser =
     }
   };
 
-// export const authSignInUser = () => async (dispatch, getState) => {};
+export const authSignOutUser = () => async dispatch => {
+  try {
+    await signOut(auth);
+    dispatch(authLogOut());
+  } catch (error) {
+    console.log('error.message', error.message);
+  }
+};
 
-export const authSignOutUser = () => async (dispatch, getState) => {};
+// export const authSignOutUser = () => async (dispatch, getState) => {};
