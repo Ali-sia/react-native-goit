@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import 'react-native-gesture-handler';
 
 import { useFonts } from 'expo-font';
@@ -9,8 +9,14 @@ import { store } from './src/redux/store';
 import useRoute from './routing/router';
 // import useRoute from './routing/routerRight';
 
+import { auth } from './src/firebase/config';
+
 export default function App() {
-  const routing = useRoute(false);
+  const [user, setUser] = useState(null);
+
+  auth.onAuthStateChanged(user => setUser(user));
+
+  const routing = useRoute(user);
 
   const [fontsLoaded] = useFonts({
     robotoBold: require('./assets/fonts/Roboto-Bold.ttf'),
