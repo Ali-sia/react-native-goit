@@ -16,6 +16,15 @@ export const authSignUpUser =
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const userSuccess = auth.currentUser;
+
+      dispatch(
+        updateUserProfile({
+          userId: userSuccess.uid,
+          nickName: userSuccess.displayName,
+          userEmail: userSuccess.email,
+          userAvatar: userSuccess.photoURL,
+        })
+      );
       console.log('userSuccess::', userSuccess);
     } catch (error) {
       console.log('error.message', error.message);
