@@ -38,7 +38,6 @@ export const authSignInUser =
   async dispatch => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log('user.user::', user.user);
     } catch (error) {
       console.log('error.message', error.message);
     }
