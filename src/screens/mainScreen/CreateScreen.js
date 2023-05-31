@@ -13,8 +13,8 @@ import {
 import { Camera } from 'expo-camera';
 import * as Location from 'expo-location';
 import * as MediaLibrary from 'expo-media-library';
-import { storage, app } from '../../firebase/config';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+import uploadPhotoToServer from '../../helpers/uploadPhoto';
 
 import CameraIcon from '../../icons/camera';
 
@@ -49,13 +49,13 @@ export default function CreatePost({ navigation }) {
   }
 
   async function handleFormSubmit() {
-    uploadPhotoToServer();
+    const uploadedPhoto = await uploadPhotoToServer(photo, 'postImage');
 
     const newPost = {
       postId: uuidv4(),
       postTitle,
       likes: 0,
-      imgUri: photo ?? '',
+      imgUri: uploadedPhoto ?? '',
       locationName,
       location: {
         latitude: location?.latitude ?? 0,
@@ -79,25 +79,6 @@ export default function CreatePost({ navigation }) {
       const { uri } = await cameraRef.takePictureAsync();
       setPhoto(uri);
       await MediaLibrary.createAssetAsync(uri);
-    }
-  }
-
-  async function uploadPhotoToServer() {
-    try {
-      console.log('---> ~ uploadPhotoToServer ~ photo:', photo);
-      const res = await fetch(photo);
-      const file = await res.blob();
-      console.log('---> ~ uploadPhotoToServer ~ file:', file);
-      const uniquePostId = uuidv4();
-
-      const storageRef = ref(storage, `$postImage/${uniquePostId}`);
-      await uploadBytes(storageRef, file);
-      // get url
-      const postImageUrl = await getDownloadURL(storageRef);
-
-      return postImageUrl;
-    } catch (error) {
-      console.log('uploadPhotoToServer::', error.message);
     }
   }
 
