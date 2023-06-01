@@ -10,9 +10,10 @@ import likesFullIcon from '../../../assets/images/icons/thumbsUpFull.png';
 
 //TODO
 // add button to likes and comments
-export default function Post({ post }) {
+export default function Post({ post, commentsCount }) {
+  console.log('---> ~ Post ~ commentsCount:', commentsCount);
   const navigation = useNavigation();
-  const { postTitle, likes, imgUri, locationName, location, comments } = post;
+  const { postId, postTitle, likes, imgUri, locationName, location } = post;
 
   return (
     <View style={styles.post}>
@@ -28,17 +29,19 @@ export default function Post({ post }) {
             onPress={() => {
               navigation.navigate('CommentScreen', {
                 imgUri,
-                comments,
+                // comments,
                 postId,
               });
             }}
           >
             <Image
               style={styles.commentsIcon}
-              source={comments.length === 0 ? commentsIcon : commentsFullIcon}
+              source={
+                commentsCount[postId] === 0 ? commentsIcon : commentsFullIcon
+              }
             ></Image>
-            <Text style={comments.length === 0 && styles.commentsCount}>
-              {comments.length}
+            <Text style={commentsCount[postId] === 0 && styles.commentsCount}>
+              {commentsCount[postId] || 0}
             </Text>
           </TouchableOpacity>
           <View style={styles.likesHolder}>

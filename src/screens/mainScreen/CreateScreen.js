@@ -62,7 +62,7 @@ export default function CreatePost({ navigation }) {
           latitude: location?.latitude ?? 0,
           longitude: location?.longitude ?? 0,
         },
-        comments: [],
+        // comments: [],
       };
 
       await addDoc(collection(dbFirestore, 'posts'), { ...newPost });

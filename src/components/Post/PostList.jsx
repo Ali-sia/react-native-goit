@@ -3,20 +3,16 @@ import { StyleSheet, View, SafeAreaView, FlatList, Text } from 'react-native';
 
 import Post from './Post';
 
-export default function PostList({ posts }) {
-  console.log('---> ~ PostList ~ posts:', posts);
-
-  // if (posts.length === 0) {
-  //   console.log("post doesn't download yet");
-  //   return null;
-  // }
+export default function PostList({ posts, commentsCount }) {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         {posts && (
           <FlatList
             data={posts}
-            renderItem={({ item }) => <Post post={item} />}
+            renderItem={({ item }) => (
+              <Post post={item} commentsCount={commentsCount} />
+            )}
             keyExtractor={(item, index) => {
               index.toString();
             }}

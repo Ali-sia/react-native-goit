@@ -13,18 +13,37 @@ import PostList from '../../components/Post/PostList';
 import { dbFirestore } from '../../firebase/config';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 
-export default function Home({ route }) {
+export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [commentsCount, setCommentsCount] = useState({});
+
+  async function getCommentsCount(postId) {
+    try {
+      const commentsRef = collection(dbFirestore, `posts/${postId}/comments`);
+      const queryRef = query(commentsRef);
+      const unsubscribe = onSnapshot(queryRef, querySnapshot => {
+        const commentsCount = querySnapshot.docs.length;
+        setCommentsCount(prev => ({ ...prev, [postId]: commentsCount }));
+      });
+      return () => unsubscribe();
+    } catch (error) {
+      console.log(error);
+      setCommentsCount(prev => ({ ...prev, [postId]: 0 }));
+    }
+  }
 
   async function getAllPosts() {
     try {
-      await onSnapshot(collection(dbFirestore, 'posts'), data => {
+      onSnapshot(collection(dbFirestore, 'posts'), data => {
         const posts = data.docs.map(doc => ({ ...doc.data(), postId: doc.id }));
         setPosts(posts);
+
+        posts.forEach(post => {
+          getCommentsCount(post.postId);
+        });
       });
     } catch (error) {
       console.log(error.massage);
-      Alert.alert('Try again');
     }
   }
 
@@ -54,7 +73,7 @@ export default function Home({ route }) {
         </View>
 
         <View style={styles.containerPosts}>
-          <PostList posts={posts} />
+          <PostList posts={posts} commentsCount={commentsCount} />
         </View>
       </View>
     </TouchableWithoutFeedback>
