@@ -11,7 +11,6 @@ import likesFullIcon from '../../../assets/images/icons/thumbsUpFull.png';
 //TODO
 // add button to likes and comments
 export default function Post({ post, commentsCount }) {
-  console.log('---> ~ Post ~ commentsCount:', commentsCount);
   const navigation = useNavigation();
   const { postId, postTitle, likes, imgUri, locationName, location } = post;
 
@@ -19,7 +18,7 @@ export default function Post({ post, commentsCount }) {
     <View style={styles.post}>
       {/* TODO переробити іконки */}
       <View style={styles.imageHolder}>
-        <Image source={{ imgUri }} style={styles.image}></Image>
+        <Image source={{ uri: imgUri }} style={styles.image}></Image>
       </View>
       <Text style={styles.title}>{postTitle}</Text>
       <View style={styles.additionContainer}>
