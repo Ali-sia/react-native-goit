@@ -12,7 +12,6 @@ export default async function uploadPhotoToServer(uploadedImg, folder) {
     await uploadBytes(storageRef, file);
     // get url
     const postImageUrl = await getDownloadURL(storageRef);
-    console.log('---> ~ uploadPhotoToServer ~ postImageUrl:', postImageUrl);
     return postImageUrl;
   } catch (error) {
     console.log('uploadPhotoToServer::', error.message);
