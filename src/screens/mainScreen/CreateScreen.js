@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
 import {
   StyleSheet,
   View,
@@ -15,10 +15,16 @@ import * as Location from 'expo-location';
 import * as MediaLibrary from 'expo-media-library';
 
 import uploadPhotoToServer from '../../helpers/uploadPhoto';
+import { getUser } from '../../redux/auth/authSelector';
+
+import { dbFirestore } from '../../firebase/config';
+import { collection, addDoc } from 'firebase/firestore';
 
 import CameraIcon from '../../icons/camera';
 
 export default function CreatePost({ navigation }) {
+  const { userId, nickName } = useSelector(getUser);
+
   const [postTitle, setPostTitle] = useState('');
   const [location, setLocation] = useState(null);
   const [locationName, setLocationName] = useState('');
@@ -41,28 +47,34 @@ export default function CreatePost({ navigation }) {
     Keyboard.dismiss();
   }
 
-  async function handleFormSubmit() {
-    const uploadedPhoto = await uploadPhotoToServer(photo, 'postImage');
+  async function uploadPostToServer() {
+    try {
+      const uploadedPhoto = await uploadPhotoToServer(photo, 'postImage');
 
-    const newPost = {
-      postId: uuidv4(),
-      postTitle,
-      likes: 0,
-      imgUri: uploadedPhoto ?? '',
-      locationName,
-      location: {
-        latitude: location?.latitude ?? 0,
-        longitude: location?.longitude ?? 0,
-      },
-      comments: [],
-    };
+      const newPost = {
+        userId,
+        nickName,
+        postTitle,
+        likes: 0,
+        imgUri: uploadedPhoto ?? '',
+        locationName,
+        location: {
+          latitude: location?.latitude ?? 0,
+          longitude: location?.longitude ?? 0,
+        },
+      };
 
-    navigation.navigate('HomeScreen', newPost);
+      await addDoc(collection(dbFirestore, 'posts'), { newPost });
 
-    setPostTitle('');
-    setLocationName('');
-    setLocation(null);
-    setPhoto('');
+      navigation.navigate('HomeScreen');
+
+      setPostTitle('');
+      setLocationName('');
+      setLocation(null);
+      setPhoto('');
+    } catch (error) {
+      console.log(error.massage);
+    }
   }
 
   const isFieldsFull = location != '' && postTitle != '' && photo != '';
@@ -124,7 +136,7 @@ export default function CreatePost({ navigation }) {
           style={[styles.formButton, isFieldsFull && styles.fullFormButton]}
           activeOpacity={0.8}
           onPress={() => {
-            handleFormSubmit();
+            uploadPostToServer();
           }}
         >
           <Text style={[styles.btnText, isFieldsFull && styles.fullBtnText]}>
