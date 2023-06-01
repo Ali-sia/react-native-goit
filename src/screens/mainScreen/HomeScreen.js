@@ -10,17 +10,29 @@ import {
 
 import PostList from '../../components/Post/PostList';
 
+import { dbFirestore } from '../../firebase/config';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+
 export default function Home({ route }) {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    if (route.params) {
-      setPosts(prevState => [...prevState, route.params]);
+  async function getAllPosts() {
+    try {
+      await onSnapshot(collection(dbFirestore, 'posts'), data => {
+        const posts = data.docs.map(doc => ({ ...doc.data(), postId: doc.id }));
+        setPosts(posts);
+      });
+    } catch (error) {
+      console.log(error.massage);
+      Alert.alert('Try again');
     }
-  }, [route.params]);
+  }
+
+  useEffect(() => {
+    getAllPosts();
+  }, []);
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-
   function handleCloseKeyboard() {
     setIsShowKeyboard(true);
     Keyboard.dismiss();
