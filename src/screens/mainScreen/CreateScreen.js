@@ -62,9 +62,10 @@ export default function CreatePost({ navigation }) {
           latitude: location?.latitude ?? 0,
           longitude: location?.longitude ?? 0,
         },
+        comments: [],
       };
 
-      await addDoc(collection(dbFirestore, 'posts'), { newPost });
+      await addDoc(collection(dbFirestore, 'posts'), { ...newPost });
 
       navigation.navigate('HomeScreen');
 
