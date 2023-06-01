@@ -13,9 +13,14 @@ import PostList from '../../components/Post/PostList';
 import { dbFirestore } from '../../firebase/config';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 
+import { getUser } from '../../redux/auth/authSelector';
+import { useSelector } from 'react-redux';
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [commentsCount, setCommentsCount] = useState({});
+
+  const { nickName, userEmail } = useSelector(getUser);
 
   async function getCommentsCount(postId) {
     try {
@@ -67,8 +72,8 @@ export default function Home() {
             ></Image>
           </View>
           <View style={styles.userInfo}>
-            <Text style={styles.userName}>Natali Romanova</Text>
-            <Text style={styles.userEmail}>email@example.com </Text>
+            <Text style={styles.userName}>{nickName}</Text>
+            <Text style={styles.userEmail}>|{userEmail}</Text>
           </View>
         </View>
 
