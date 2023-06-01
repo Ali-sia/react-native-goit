@@ -32,13 +32,6 @@ export default function CreatePost({ navigation }) {
       if (status !== 'granted') {
         console.log('Permission to access location was denied');
       }
-
-      let location = await Location.getCurrentPositionAsync({});
-      const coords = {
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      };
-      setLocation(coords);
     })();
   }, []);
 
@@ -75,6 +68,13 @@ export default function CreatePost({ navigation }) {
   const isFieldsFull = location != '' && postTitle != '' && photo != '';
 
   async function takePhoto() {
+    let locationRef = await Location.getCurrentPositionAsync({});
+    const coords = {
+      latitude: locationRef.coords.latitude,
+      longitude: locationRef.coords.longitude,
+    };
+    setLocation(coords);
+
     if (cameraRef) {
       const { uri } = await cameraRef.takePictureAsync();
       setPhoto(uri);
