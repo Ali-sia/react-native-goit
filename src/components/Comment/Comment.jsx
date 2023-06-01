@@ -1,19 +1,40 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-//TODO
-// add button to likes and comments
-export default function Comment({ author, text, data }) {
+
+import { getUser } from '../../redux/auth/authSelector';
+import { useSelector } from 'react-redux';
+
+function convertFirebaseDate(firebaseDate) {
+  const milliseconds =
+    firebaseDate.seconds * 1000 + firebaseDate.nanoseconds / 1e6;
+  const date = new Date(milliseconds);
+  const formattedDate = date.toLocaleString(); // Example format: 6/30/2023, 12:00:11 AM
+  return formattedDate;
+}
+
+export default function Comment({ authorAvatar, authorId, text, data }) {
+  const convertedData = convertFirebaseDate(data);
+
+  const { userId } = useSelector(getUser);
+
+  const isPostAuthor = authorId === userId ? true : false;
+  console.log('---> ~ Comment ~ isPostAuthor:', isPostAuthor);
+
   return (
     <View style={styles.comment}>
       <View style={styles.avatarHolder}>
-        <Image
-          // source={{uri: item.userAvatar}}
-          style={styles.authorAvatar}
-        />
+        {/* <Image source={{ uri: imgUri }} style={styles.authorAvatar, , {[isPostAuthor ? 'marginLeft' : 'marginRight']: 16}]} /> */}
       </View>
       <View style={styles.commentWrapper}>
         <Text style={styles.commentAuthor}>{text}</Text>
-        <Text style={styles.commentDate}>{data}</Text>
+        <Text
+          style={[
+            styles.commentDate,
+            { textAlign: isPostAuthor ? 'left' : 'right' },
+          ]}
+        >
+          {convertedData}
+        </Text>
       </View>
     </View>
   );
