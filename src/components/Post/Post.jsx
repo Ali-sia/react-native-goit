@@ -12,17 +12,10 @@ import likesFullIcon from '../../../assets/images/icons/thumbsUpFull.png';
 // add button to likes and comments
 export default function Post({ post }) {
   const navigation = useNavigation();
+  const { postTitle, likes, imgUri, locationName, location, comments } = post;
 
-  const { postId, postTitle, likes, imgUri, locationName, location, comments } =
-    post;
   return (
-    <View
-      style={styles.post}
-      //   onPress={() => {
-      //     alert('crete new POST');
-      //   }}
-      //   activeOpacity={0.8}
-    >
+    <View style={styles.post}>
       {/* TODO переробити іконки */}
       <View style={styles.imageHolder}>
         <Image source={{ imgUri }} style={styles.image}></Image>
@@ -34,8 +27,9 @@ export default function Post({ post }) {
             style={styles.commentsHolder}
             onPress={() => {
               navigation.navigate('CommentScreen', {
-                prevScreen: 'HomeScreen',
-                params: { imgUri, comments },
+                imgUri,
+                comments,
+                postId,
               });
             }}
           >
