@@ -2,7 +2,7 @@ import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import AddAvatarIcon from '../icons/addAvatar';
 import * as ImagePicker from 'expo-image-picker';
 
-export default function AvatarInput({ avatar, setAvatar }) {
+export default function AvatarInput({ avatar, setAvatar = null }) {
   const pickImageAsync = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
@@ -32,7 +32,9 @@ export default function AvatarInput({ avatar, setAvatar }) {
         <TouchableOpacity
           style={[styles.addImageIcon, avatar && styles.deleteImageIcon]}
           activeOpacity={0.8}
-          onPress={() => pickImageAsync()}
+          onPress={() => {
+            if (setAvatar) pickImageAsync();
+          }}
         >
           <AddAvatarIcon stroke={avatar ? '#E8E8E8' : '#FF6C00'} />
         </TouchableOpacity>
