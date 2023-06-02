@@ -1,5 +1,5 @@
 // import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import {
@@ -22,19 +22,21 @@ export default function Register() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  const [userAvatar, setUserAvatar] = useState('');
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   function handleCloseKeyboard() {
     setIsShowKeyboard(true);
     Keyboard.dismiss();
   }
 
-  function handleFormSubmit() {
-    const newUser = { login, email, password };
+  async function handleFormSubmit() {
+    const newUser = { login, email, password, userAvatar };
+
     dispatch(authSignUpUser(newUser));
 
     setLogin('');
@@ -52,7 +54,7 @@ export default function Register() {
           <View style={styles.mainContainer}>
             <View style={styles.container}>
               {/* TODO create function to load photo */}
-              <AvatarInput />
+              <AvatarInput avatar={userAvatar} setAvatar={setUserAvatar} />
               {/* page title */}
               <Text style={styles.title}>Реєстрація</Text>
               {/* login input */}

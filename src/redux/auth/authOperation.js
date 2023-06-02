@@ -1,4 +1,3 @@
-import { db } from '../../firebase/config';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,33 +7,41 @@ import {
 } from 'firebase/auth';
 
 import { updateUserProfile, authLogOut, authStateChange } from './authSlice';
+import uploadPhotoToServer from '../../helpers/uploadPhoto';
 
 import { auth } from '../../firebase/config';
 export const authSignUpUser =
-  ({ login, email, password }) =>
+  ({ login, email, password, userAvatar }) =>
   async dispatch => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+
+      const uploadedAvatar = await uploadPhotoToServer(
+        userAvatar,
+        'usersAvatar'
+      );
       await updateProfile(auth.currentUser, {
         displayName: login,
+        photoURL: uploadedAvatar,
       });
 
       const userSuccess = auth.currentUser;
-      dispatch(
-        updateUserProfile({
-          userId: userSuccess.uid,
-          nickName: userSuccess.displayName,
-          userEmail: userSuccess.email,
-          userAvatar: userSuccess.photoURL,
-        })
-      );
+
+      const userUpdateProfile = {
+        userId: userSuccess.uid,
+        nickName: userSuccess.displayName,
+        userEmail: userSuccess.email,
+        userAvatar: userSuccess.photoURL,
+      };
+
+      dispatch(updateUserProfile(userUpdateProfile));
     } catch (error) {
       console.log('error.message', error.message);
     }
   };
 
 export const authSignInUser =
-  ({ email, password }) =>
+  ({ email, password, photo }) =>
   async dispatch => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);

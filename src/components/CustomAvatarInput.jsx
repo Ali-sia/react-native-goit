@@ -1,17 +1,40 @@
-import { StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import AddAvatarIcon from '../icons/addAvatar';
+import * as ImagePicker from 'expo-image-picker';
 
-export default function AvatarInput({ photo }) {
+export default function AvatarInput({ avatar, setAvatar }) {
+  const pickImageAsync = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Sorry, we need camera roll permissions to make this work!');
+      return;
+    }
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setAvatar(result.assets[0].uri);
+    } else {
+      alert('You did not select any image.');
+    }
+  };
+
   return (
     <>
       {/* avatar input */}
       <TouchableOpacity style={styles.imageInput} activeOpacity={0.8}>
+        {avatar && (
+          <Image style={styles.image} source={{ uri: avatar }}></Image>
+        )}
         <TouchableOpacity
-          style={[styles.addImageIcon, photo && styles.deleteImageIcon]}
+          style={[styles.addImageIcon, avatar && styles.deleteImageIcon]}
           activeOpacity={0.8}
-          onPress={() => Alert.alert('add photo')}
+          onPress={() => pickImageAsync()}
         >
-          <AddAvatarIcon stroke={photo ? '#E8E8E8' : '#FF6C00'} />
+          <AddAvatarIcon stroke={avatar ? '#E8E8E8' : '#FF6C00'} />
         </TouchableOpacity>
       </TouchableOpacity>
     </>
@@ -19,6 +42,7 @@ export default function AvatarInput({ photo }) {
 }
 
 const styles = StyleSheet.create({
+  image: { height: '100%', width: '100%', borderRadius: 16 },
   imageInput: {
     height: 120,
     width: 120,
