@@ -10,6 +10,7 @@ import { updateUserProfile, authLogOut, authStateChange } from './authSlice';
 import uploadPhotoToServer from '../../helpers/uploadPhoto';
 
 import { auth } from '../../firebase/config';
+
 export const authSignUpUser =
   ({ login, email, password, userAvatar }) =>
   async dispatch => {

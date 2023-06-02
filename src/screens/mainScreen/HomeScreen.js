@@ -20,7 +20,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [commentsCount, setCommentsCount] = useState({});
 
-  const { nickName, userEmail } = useSelector(getUser);
+  const { nickName, userEmail, userAvatar } = useSelector(getUser);
 
   async function getCommentsCount(postId) {
     try {
@@ -67,13 +67,11 @@ export default function Home() {
       <View style={styles.containerUnder}>
         <View style={styles.containerUser}>
           <View style={styles.containerAvatar}>
-            <Image
-              source={require('../../../assets/images/avatarExample.png')}
-            ></Image>
+            <Image style={styles.image} source={{ uri: userAvatar }}></Image>
           </View>
           <View style={styles.userInfo}>
             <Text style={styles.userName}>{nickName}</Text>
-            <Text style={styles.userEmail}>|{userEmail}</Text>
+            <Text style={styles.userEmail}>{userEmail}</Text>
           </View>
         </View>
 
@@ -108,6 +106,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     overflow: 'hidden',
   },
+  image: { width: '100%', height: '100%' },
   userInfo: {},
   userName: {
     fontFamily: 'robotoBold',

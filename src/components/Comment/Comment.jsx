@@ -12,29 +12,21 @@ function convertFirebaseDate(firebaseDate) {
   return formattedDate;
 }
 
-export default function Comment({ authorAvatar, authorId, text, data }) {
+export default function Comment({ authorId, text, data }) {
   const convertedData = convertFirebaseDate(data);
 
-  const { userId } = useSelector(getUser);
+  const { userId, userAvatar } = useSelector(getUser);
 
-  const isPostAuthor = authorId === userId ? true : false;
-  console.log('---> ~ Comment ~ isPostAuthor:', isPostAuthor);
+  // const isPostAuthor = authorId === userId ? true : false;
 
   return (
     <View style={styles.comment}>
       <View style={styles.avatarHolder}>
-        {/* <Image source={{ uri: imgUri }} style={styles.authorAvatar, , {[isPostAuthor ? 'marginLeft' : 'marginRight']: 16}]} /> */}
+        <Image source={{ uri: userAvatar }} style={styles.image} />
       </View>
       <View style={styles.commentWrapper}>
         <Text style={styles.commentAuthor}>{text}</Text>
-        <Text
-          style={[
-            styles.commentDate,
-            { textAlign: isPostAuthor ? 'left' : 'right' },
-          ]}
-        >
-          {convertedData}
-        </Text>
+        <Text style={styles.commentDate}>{convertedData}</Text>
       </View>
     </View>
   );
@@ -42,9 +34,6 @@ export default function Comment({ authorAvatar, authorId, text, data }) {
 
 const styles = StyleSheet.create({
   comment: {
-    // padding: 16,
-    // width: '100%',
-    // flex: 1,
     display: 'flex',
     flexDirection: 'row',
     color: '#212121',
@@ -58,10 +47,11 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: '#f0f',
     marginRight: 16,
+    overflow: 'hidden',
   },
-  authorAvatar: {
-    // width: 28,
-    // height: 28,
+  image: {
+    width: '100%',
+    height: '100%',
   },
   commentWrapper: {
     flex: 1,

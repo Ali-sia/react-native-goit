@@ -31,7 +31,7 @@ export default function Comment({ route }) {
     },
   } = useRoute();
 
-  const { userId, nickName } = useSelector(getUser);
+  const { userId, nickName, userAvatar } = useSelector(getUser);
   const [newComment, setNewComment] = useState('');
   const [allComments, setAllComments] = useState(null);
 

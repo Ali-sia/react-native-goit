@@ -12,7 +12,6 @@ import {
 import Comment from './Comment';
 
 export default function CommentList({ comments }) {
-  console.log('---> ~ CommentList ~ comments:', comments);
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
@@ -20,7 +19,6 @@ export default function CommentList({ comments }) {
           data={comments}
           renderItem={({ item }) => (
             <Comment
-              authorAvatar={item.userAvatar}
               authorId={item.userId}
               text={item.newComment}
               data={item.postedDate}
